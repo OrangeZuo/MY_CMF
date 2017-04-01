@@ -3,27 +3,23 @@
     <div class="top">
         <!-- logo -->
         <div class="logo">
-            <a href="#">
-                <img src="__IMG__/index/logo.png">
+            <a href="{$logo['link']}">
+                <img src="{:get_cover($logo['id'])['path']}" width="200" height="100">
             </a>
         </div>
         <!-- 标题 -->
         <div class="title">
-            <img src="__IMG__/index/title.png">
+                <img src="{:get_cover($title['id'])['path']}" width="400" height="100">
         </div>
         <!-- 其他 -->
         <div class="other">
-            <ul>
-                <li>
-                    <img src="{}">
-                </li>
-            </ul>
+            <img src="{:get_cover($tel['id'])['path']}" width="200" height="100">
         </div>
     </div>
     <div class="nav">
         <ul>
             <volist name="nav" id="data">
-                <li class=""><a title="" href="./{$data.name}"><span>{$data.title}</span></a></li>
+                <li class=""><a title="" href="{$data.name}"><span>{$data.title}</span></a></li>
             </volist>
 
         </ul>

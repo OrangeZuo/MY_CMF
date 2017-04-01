@@ -3,15 +3,13 @@
 <block name="body">
     <div id="focus" class="banners" style="position: relative; visibility:hidden;">
         <div id="au" style="visibility:hidden;">
-            <div style='display: block'>
-                <a href="#" target="_blank">
-                    <img src="__IMG__/index/banner1.jpg" width="100%" height="100%" alt="" /></a></div>
-            <div style='display: none'>
-                <a href="#" target="_blank">
-                    <img src="__IMG__/index/banner2.jpg" width="100%" height="100%" alt="" /></a></div>
-            <div style='display: none'>
-                <a href="#" target="_blank">
-                    <img src="__IMG__/index/banner3.jpg" width="100%" height="100%" alt="" /></a></div>
+            <volist name="banner" id="b" key="k">
+                <div <?php if ($k != 1): ?> style="display: none" <?php endif; ?>>
+                    <a href="{$banner['link']}" target="_blank">
+                        <img src="{:get_cover($b['id'])['path']}" width="1439" height="463" alt="{$b['title']}" />
+                    </a>
+                </div>
+            </volist>
             <div id="no" style="display: none">
             </div>
             <div class="lunbo">
@@ -114,21 +112,9 @@
                     <img src="__IMG__/index/jiao1.gif" alt="">
                 </a></div>
             <div id="ScollNamehz" style="float: left;">
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="__IMG__/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
+                <volist name="run1" id="r1">
+                    <li><a target="_blank" href="{$r1['link']}" title=""><img src="{:get_cover($r1['id'])['path']}" alt="{$r1['description']}" title="{$r1['title']}" width="145" height="49"/></a></li>
+                </volist>
             </div>
             <div class="jiao1 fr" id="RightIDhz"><a href="javascript:void(0);"> <img src="__IMG__/index/jiao2.gif" alt=""></a></div>
         </div>

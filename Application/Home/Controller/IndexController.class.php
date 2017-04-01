@@ -19,11 +19,29 @@ class IndexController extends HomeController {
 	//系统首页
     public function index(){
         parent::_initialize();
+        $logo   = D('document')->where('status = 1 and category_id = 5')->find();
+        $title  = D('document')->where('status = 1 and category_id = 7')->find();
+        $tel    = D('document')->where('status = 1 and category_id = 8')->find();
+        $banner = D('document')->where('status = 1 and category_id = 6')->select();
+        $run1   = D('document')->where('status = 1 and category_id = 10')->select();
+
         $this->assign('nav',$this->nav);    // nav导航
+        $this->assign('title',$title);      // title
+        $this->assign('logo',$logo);        // logo
+        $this->assign('tel',$tel);          // 400tel
+        $this->assign('banner',$banner);    // banner
+        $this->assign('run1',$run1);        // 滚动小图
 
-        $pic     = D('Category')->where('pid=4')->select(); // 首页图片
 
-        $pic     = D('Category')->getTree(); // 首页图片
+        var_dump($run1);
+        die();
+
+
+
+
+//        var_dump($banner);
+//        die();
+
 
 
 
