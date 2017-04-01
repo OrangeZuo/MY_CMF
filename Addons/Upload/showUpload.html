@@ -1,0 +1,81 @@
+
+<eq name='load' value='1'>
+<script type="text/javascript" src="__ADDONS__/Upload/jquery.uploadify.min.js?rand={:time()}"></script>
+<link rel="stylesheet" type="text/css" href="__ADDONS__/Upload/uploadify.css" />
+</eq>
+
+<input type="file" id="upload_picture_{$load}" class='upload_picture'>
+<input type="hidden" name="{$name}" value="{$value}" id="cover_id_{$load}"/>
+<div class="upload-img-box">
+
+    <eq name='type' value='image'>
+        <input type="hidden" name="{$name}_url" value="{$value|getPicture}" />
+        <neq name="value" value='0'>
+            <div class="upload-pre-item">
+
+                <img src="{$value|getPicture}"/>
+            </div>
+        </neq>
+    <else />
+        <php>
+            $fileName = getFileName( $value );
+        </php>
+        <input type="hidden" name="{$name}_url" value="{$fileName}" />
+        <notempty name='fileName'>
+            <div class='upload-pre-file'>
+                <span class="upload_icon_all"></span>
+
+                {$fileName}
+            </div>
+        </notempty>
+    </eq>
+</div>
+
+
+<script type="text/javascript">
+//上传图片
+/* 初始化上传插件 */
+$(document).ready(function(){ 
+    $("#upload_picture_{$load}").uploadify({
+        "height"          : 30,
+        "swf"             : "__ADDONS__/Upload/uploadify.swf",
+        "fileObjName"     : "download",
+        "buttonText"      : "{$button_name}",
+        "uploader"        : "{:U( $uploadUrl )}",
+        "width"           : 120,
+        "simUploadLimit"  : 1,
+        "multi"		      : false,
+        "fileTypeExts"	  : "{$allow}",
+        "onUploadSuccess" : function( file, data) {
+    		var data = $.parseJSON(data);
+        	var src = '';
+            if(data.status){
+            	$("#cover_id_{$load}").val(data.id);
+            	src = data.url || data.path ;
+                htmls = '<input type="hidden" name="{$name}_url" value="__ROOT__'+src+'">';
+
+                <?php if($type == 'image'): ?>
+                    htmls += '<div class="upload-pre-item"><img src="__ROOT__' + src + '"/></div>';
+                <?php else: ?>
+                    htmls += '<div class="upload-pre-file"><span class="upload_icon_all"></span>" + data.name + "</div>';
+                <?php endif;?>
+
+                $("#cover_id_{$load}").parent().find('.upload-img-box').html(htmls);
+            } else {
+                if( data.info ) {
+            	   alert(data.info);
+                } else {
+                    alert( '文件上传失败' );
+                }
+            	setTimeout(function(){
+                    $('#top-alert').find('button').click();
+                    $(that).removeClass('disabled').prop('disabled',false);
+                },1500);
+            }
+        },
+        'onFallback' : function() {
+            alert('未检测到兼容版本的Flash.');
+        }
+    });
+});
+</script>	

@@ -1,0 +1,53 @@
+
+.content{width: 960px;margin: auto;padding-bottom: 10px;display: table;}
+.brand_pic {width: 960px;margin-bottom: 10px;overflow: hidden;}
+.left {width: 201px;float: left;overflow: hidden;}
+.diys {background: url("../images/index/tit1n.gif") no-repeat scroll 0 0 transparent;color: #333333;font-size: 14px;font-weight: bold;height: 36px;line-height: 36px;overflow: hidden;padding-left: 18px;}
+.list {border: solid 1px #ccc;border-top: 0; padding: 8px 12px;margin-bottom: 10px;zoom: 1;background: #FFF;}
+.list li {background: url(../images/index/ico10.gif) no-repeat 0 10px; line-height: 33px;overflow: hidden;padding: 0 5px 0 30px;font-size: 12px;}
+.list li a {height: 25px;line-height: 25px;display: block;}
+.list li a:hover {text-decoration: underline}
+.right {width: 754px;float: left;display: inline;margin-left: 5px;overflow: hidden;font-size: 12px;}
+.right .title{background: url(../images/index/754.gif) no-repeat;height: 36px;line-height: 36px;padding-left: 27px;}
+.right .r_list {border: 1px solid #ccc;border-top: 0;margin-bottom: 10px;background: #fff;width: 752px;padding-top: 10px;}
+.right .r_list dl {float: left;width: 215px;height: 161px;padding: 0 0 26px 26px;overflow: hidden;}
+.right .r_list dt {font-size: 0;line-height: 0;}
+.right .r_list dt img {width: 205px;height: 120px;border: 5px solid #d4d3d4;}
+.right .r_list dd a {width: 150px;height: 17px;background: #28272f;margin: 14px auto 0;line-height: 17px;text-align: center;color: #fff;display: block;overflow: hidden;}
+.clear {clear: both;height: 0;line-height: 0;font-size: 0;overflow: hidden;}
+
+.call{width: 201px;float: left;overflow: hidden;font-size: 12px;margin-top: 36px;}
+.diys {background: url("../images/index/tit1n.gif") no-repeat scroll 0 0 transparent;color: #333333;font-size: 14px;font-weight: bold;height: 36px;line-height: 36px;overflow: hidden;padding-left: 18px;}
+.sy_con {height:365px;border: solid 1px #CCC;border-top: none;width: 199px;overflow: hidden;background: #FFF;}
+.sy_con h4 {text-align: center;height: 30px;line-height: 30px;font-size: 14px;}
+.sy_con .dianh {padding: 0 5px 0 10px;}
+.sy_con .dianhua {background: url("../images/index/Teln.gif") no-repeat scroll 0 10px transparent;color: #666666;line-height: 10px;padding: 10px 0 10px 55px;}
+.sy_con .dianhua span {display: block;font: 18px "Impact";color: #721B85;}
+.sy_con p { line-height: 24px;}
+
+.tbe_left{float: left;  width: 460px;  padding-top: 24px;margin-left: 10px;}
+.tbe_left .l_tbe_head{background: url(../images/index/tit4.gif) no-repeat;  height: 33px;  padding: 0 20px;  font: 12px "方正中倩简体";  color: #6b6a6a;  line-height: 33px;}
+.tbe_left .l_tbe_head span{color: #28272f;  font: 14px "微软雅黑";  line-height: 33px;  padding-right: 6px;}
+.tbe_left .l_tbe_head p a{float: right;padding-top: 3px;}
+.tbe_left .l_tbe_body{height: 368px;  border: 1px solid #cccbcb;  padding-left: 34px;  border-top: 0;}
+.tbe_left .l_tbe_body dl{height: 151px;  padding-top: 23px;}
+.tbe_left .l_tbe_body dt{float: left;  font-size: 0;  line-height: 0;}
+.tbe_left .l_tbe_body dt img{width: 180px;  height: 120px;}
+.tbe_left .l_tbe_body dd{float: left;  width: 220px;  padding-left: 21px;  color: #1a1a1a;  line-height: 24px;  height: 151px;  overflow: hidden;}
+.tbe_left .l_tbe_body dd h4{font-size: 14px;}
+.tbe_left .l_tbe_body dd h4 a{display: block;  height: 24px;  line-height: 24px;  overflow: hidden;  font-size: 12px;  color: #561963;}
+
+.dongt {float: right;  width: 277px;padding-top: 23px;}
+.dongt .tit {background: url(../images/index/tit5.jpg) no-repeat;height: 33px;padding: 0 20px;font: 12px "方正中倩简体";color: #6b6a6a;line-height: 33px;  }
+.dongt .tit p a {float: right;padding-top:3px;}
+.dongt .tit span {color: #28272f;font: 14px "微软雅黑";line-height: 33px;padding-right: 6px;}
+.dongt .nr {height: 359px;border: 1px solid #cccbcb;border-top: 0;padding: 10px 10px 0;}
+.dongt .nr dl {height: 102px;overflow: hidden;margin-bottom: 15px;}
+.dongt .nr dt {float: left;font-size: 0;line-height: 0;}
+.dongt .nr dt img {width: 126px;height: 102px;}
+.dongt .nr dd {float: left;width: 120px;padding-left: 9px;color: #353535;height: 102px;overflow: hidden;line-height: 20px;}
+.dongt .nr dd h4 a {display: block;font-size: 12px;color: #353535;line-height: 22px;height: 20px;overflow: hidden;}
+.dongt .nr li {height: 29px;line-height: 29px;border-bottom: 1px dashed #c8c8c8;padding-left: 19px;background: url(../images/index/ico4.gif) no-repeat 3px 13px;color: #b989c3;overflow: hidden;}
+.fr {float: right;}
+.dongt .nr li a {color: #454545;}
+.dongt .nr .nones {border: 0;}

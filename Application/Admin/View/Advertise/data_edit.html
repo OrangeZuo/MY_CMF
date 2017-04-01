@@ -1,0 +1,90 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+    <form action="{:U('update')}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">名称<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="title" value="{$info.title}" >
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">描述<span class="check-tips"></span></label>
+            <div class="controls">
+                <label class="textarea input-large">
+                    <textarea name="description" >{$info['description']}</textarea>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">链接地址<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="link_url" value="{$info.link_url}" >
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">排序<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="sort" value="{$info.sort|default=0}" >
+            </div>
+        </div>
+
+
+        <div class="form-item">
+            <label class="item-label">广告内容<span class="check-tips"></span></label>
+            <div class="controls">
+                <?php
+                    if($advPositionInfo['type'] == 2 || $advPositionInfo['type'] == 3) {
+                        if(!empty($info['content'])) {
+
+                            $content = json_decode($info['content'], true);
+                        } else {
+                            $content = ['image'=>'0', 'image_url'=>''];
+                        }
+                    }
+                ?>
+
+                <switch name="advPositionInfo.type" >
+                    <case value="1">
+                        <label class="textarea input-large">
+                            <textarea name="content" >{$info['content']}</textarea>
+                        </label>
+                    </case>
+                    <case value="2">
+                        {:hook('showUpload',array('image',$content['image']))}
+                    </case>
+
+                    <case value="3">
+                        {:hook('showUpload',array('image',$content['image']))}
+                    </case>
+
+                    <default />
+                        <label class="textarea input-large">
+                            <textarea name="content" >{$info['content']}</textarea>
+                        </label>
+                </switch>
+            </div>
+        </div>
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id|default=0}"/>
+            <input type="hidden" name="position_id" value="{$advPositionInfo.id}" />
+            <input type="hidden" name="type" value="{$advPositionInfo.type}" />
+
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav("{:U('AdvertisePosition/index')}");
+    </script>
+</block>

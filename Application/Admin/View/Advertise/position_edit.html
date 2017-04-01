@@ -1,0 +1,67 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+    <form action="{:U('update')}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">名称<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="title" value="{$info.title}" >
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">类型<span class="check-tips"></span></label>
+            <div class="controls">
+                <?php $advertise_type_list = Common\Model\AdvertisePositionModel::getAdvertiseTypeList();?>
+                <select name="type" class="input-large">
+                    <volist name="advertise_type_list" id="vo">
+                        <option value="{$vo['id']}" <eq name="vo.id" value="$info.type">selected</eq> >{$vo['title']}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item hidden">
+            <label class="item-label">栏目<span class="check-tips"></span></label>
+            <div class="controls">
+                <?php $category_list = S('sys_category_list');?>
+                <select name="category_id" class="input-large">
+                    <option value="0">非指定栏目</option>
+                    <volist name="category_list" id="vo">
+                        <option value="{$vo['id']}" >{$vo['title']}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">唯一标志<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="only_sign" value="{$info.only_sign}" >
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">描述<span class="check-tips"></span></label>
+            <div class="controls">
+                <label class="textarea input-large">
+                    <textarea name="description" >{$info['description']}</textarea>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id|default=0}"/>
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav("{:U('index')}");
+    </script>
+</block>

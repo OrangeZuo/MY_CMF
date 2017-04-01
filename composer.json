@@ -1,0 +1,22 @@
+{
+  "name": "guiguoershao/mycmf",
+  "description": "my cmf framework",
+  "type": "framework",
+  "keywords": ["framework","thinkphp","CMF"],
+  "homepage": "https://github.com/guiguoershao",
+  "license": "Apache2",
+  "authors": [
+    {
+      "name": "guiguoershao",
+      "email": "guiguoershao@163.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "guzzlehttp/guzzle": "~6.0",
+    "intervention/image": "^2.3",
+    "jwage/purl": "*",
+    "predis/predis": "^1.1"
+  },
+  "minimum-stability": "dev"
+}
