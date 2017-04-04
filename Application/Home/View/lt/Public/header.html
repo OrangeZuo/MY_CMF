@@ -18,8 +18,9 @@
     </div>
     <div class="nav">
         <ul>
+            <?php var_dump($_SERVER);die();?>
             <volist name="nav" id="data">
-                <li class=""><a title="" href="{$data.name}"><span>{$data.title}</span></a></li>
+                <li <?php if($_SERVER){}?>class=""><a title="" href="{:U($data['url'])}"><span>{$data.title}</span></a></li>
             </volist>
 
         </ul>

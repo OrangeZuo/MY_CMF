@@ -18,7 +18,9 @@ use Think\Model;
 class HomeController extends Controller {
 
     protected $nav;
-
+    protected $logo;
+    protected $title;
+    protected $tel;
 	/* 空操作，用于输出404页面 */
 	public function _empty(){
 		$this->redirect('Index/index');
@@ -29,8 +31,10 @@ class HomeController extends Controller {
 	    // nav导航
 
         $Channel = new \Home\Model\ChannelModel();
-        $this->nav = $Channel->lists();
-
+        $this->nav      = $Channel->lists();
+        $this->logo     = D('document')->where('status = 1 and category_id = 5')->find();
+        $this->title    = D('document')->where('status = 1 and category_id = 7')->find();
+        $this->tel      = D('document')->where('status = 1 and category_id = 8')->find();
 
         /* 读取站点配置 */
         $config = api('Config/lists');

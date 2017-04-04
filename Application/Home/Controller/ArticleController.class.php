@@ -17,13 +17,14 @@ class ArticleController extends HomeController {
 
     /* 文档模型频道页 */
 	public function index(){
-	    echo 11;
-	    die();
+        parent::_initialize();
 
+        $this->assign('nav',$this->nav);           // nav导航
+        $this->assign('title',$this->title);       // title
+        $this->assign('logo',$this->logo);         // logo
+        $this->assign('tel',$this->tel);           // 400tel
 		/* 分类信息 */
 		$category = $this->category();
-        var_dump($category);
-        die();
 		//频道页只显示模板，默认不读取任何内容
 		//内容可以通过模板标签自行定制
 
@@ -92,12 +93,15 @@ class ArticleController extends HomeController {
 	}
 
 	/* 文档分类检测 */
-	private function category($id = 0){
+	private function category($id = 3){
 		/* 标识正确性检测 */
-		$id = $id ? $id : I('get.category', 0);
+		$id = $id ? $id : I('get.id', 0);
+//        var_dump($id);
+//        die();
 		if(empty($id)){
 			$this->error('没有指定文档分类！');
 		}
+
 
 		/* 获取分类信息 */
 		$category = D('Category')->info($id);

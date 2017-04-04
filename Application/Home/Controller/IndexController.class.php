@@ -18,9 +18,7 @@ class IndexController extends HomeController {
 	//系统首页
     public function index(){
         parent::_initialize();
-        $logo         = D('document')->where('status = 1 and category_id = 5')->find();
-        $title        = D('document')->where('status = 1 and category_id = 7')->find();
-        $tel          = D('document')->where('status = 1 and category_id = 8')->find();
+
         $banner       = D('document')->where('status = 1 and category_id = 6')->select();
         $run_small    = D('document')->where('status = 1 and category_id = 10')->select();
         $advertise1   = D('document')->where('status = 1 and category_id = 11')->find();
@@ -44,13 +42,13 @@ class IndexController extends HomeController {
         $problem_t    = D('category')->where('id = 28')->find();
 
 
-        $this->assign('nav',$this->nav);                // nav导航
-        $this->assign('title',$title);            // title
-        $this->assign('logo',$logo);              // logo
-        $this->assign('tel',$tel);                // 400tel
-        $this->assign('banner',$banner);          // banner
-        $this->assign('run_small',$run_small);    // 滚动小图
-        $this->assign('advertise1',$advertise1);  // 广告1
+        $this->assign('nav',$this->nav);           // nav导航
+        $this->assign('title',$this->title);       // title
+        $this->assign('logo',$this->logo);         // logo
+        $this->assign('tel',$this->tel);           // 400tel
+        $this->assign('banner',$banner);           // banner
+        $this->assign('run_small',$run_small);     // 滚动小图
+        $this->assign('advertise1',$advertise1);   // 广告1
         $this->assign('advertise2',$advertise2);  // 广告2
         $this->assign('advertise3',$advertise3);  // 广告3
         $this->assign('run_big',$run_big);        // 滚动大图
