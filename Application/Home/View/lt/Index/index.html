@@ -6,7 +6,7 @@
             <volist name="banner" id="b" key="k">
                 <div <?php if ($k != 1): ?> style="display: none" <?php endif; ?>>
                     <a href="{$banner['link']}" target="_blank">
-                        <img src="{:get_cover($b['id'])['path']}" width="1439" height="463" alt="{$b['title']}" />
+                        <img src="{:get_cover($b['cover_id'])['path']}" width="1439" height="463" alt="{$b['title']}" />
                     </a>
                 </div>
             </volist>
@@ -112,8 +112,8 @@
                     <img src="__IMG__/index/jiao1.gif" alt="">
                 </a></div>
             <div id="ScollNamehz" style="float: left;">
-                <volist name="run1" id="r1">
-                    <li><a target="_blank" href="{$r1['link']}" title=""><img src="{:get_cover($r1['id'])['path']}" alt="{$r1['description']}" title="{$r1['title']}" width="145" height="49"/></a></li>
+                <volist name="run_small" id="small">
+                    <li><a target="_blank" href="{$small['link']}" title="{$small['title']}"><img src="{:get_cover($small['cover_id'])['path']}" alt="{$small['description']}" title="{$small['title']}" width="145" height="49"/></a></li>
                 </volist>
             </div>
             <div class="jiao1 fr" id="RightIDhz"><a href="javascript:void(0);"> <img src="__IMG__/index/jiao2.gif" alt=""></a></div>
@@ -137,18 +137,13 @@
         <div class="brand_show">
             <div class="b_left">
                 <div class="bl_header">
-                    <a href="#" target="_blank">挖机分类</a>
+                    <a href="javascript:void (0);">{$brandTitle['title']}</a>
                 </div>
                 <div class="bl_body">
                     <ul>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机222222222222</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机333</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
+                        <volist name="brand" id="bd">
+                            <li><a href="{$bd['name']}">{$bd['title']}</a></li>
+                        </volist>
                     </ul>
                 </div>
             </div>
@@ -190,7 +185,7 @@
 
         <!--pic_show start-->
         <div class="pic_show" style="margin-top: 20px;">
-            <img src="__IMG__/index/pic.jpg" width="100%" height="100%" style="padding: 0;margin: 0;">
+            <img src="{:get_cover($advertise1['cover_id'])['path']}" width="100%" height="100%" style="padding: 0;margin: 0;">
         </div>
         <!--pic_show over-->
     </div>
@@ -198,54 +193,16 @@
     <!--message start-->
     <div class="message_pic" style="background: url('__IMG__/index/message.jpg')no-repeat;height: 1206px;width:100%" >
         <div class="message">
-            <dl class="msg1 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg2 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg3 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg4 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg5 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg6 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
+            <volist name="introduce" id="ite" key="k">
+                <dl class="msg{$k} msg">
+                    <!--<dt>-->
+                    <!--<a href="#" target="_blank" title="">这是标题</a>-->
+                    <!--</dt>-->
+                    <dd>
+                        <a href="javascript: void (0);">{$ite['content']}</a>
+                    </dd>
+                </dl>
+            </volist>
         </div>
     </div>
     <!--message over-->
@@ -253,30 +210,29 @@
     <div class="about">
         <div class="about_head">
             <p>
-                <a href="#" title=""><img alt="" title="" src="__IMG__/index/more.gif"></a>
+                <a href="{:U('article/id='.$about_art['id'])}" title="{$about_art['title']}"><img alt="{$about_art['title']}" title="{$about_art['title']}" src="__IMG__/index/more.gif"></a>
             </p>
-            <a href="#" target="_blank">关于龙腾</a>
+            <a href="{:U('article/id='.$about_art['id'])}" target="_blank">{$about_art['title']}</a>
         </div>
         <div class="about_body">
             <div class="about_cont">
-                龙腾介绍龙腾介绍龙腾介绍龙腾介绍龙腾介绍龙腾介绍
+                {$about_art['description']}
             </div>
             <div class="about_pic">
                 <div class="l_about_pic">
                     <a href="#" title="" target="_blank">
-                        <img src="__IMG__/index/logo.png">
+                        <img src="{:get_cover($about_pic_b['cover_id'])['path']}" alt="{$about_pic_b['description']}">
                     </a>
                 </div>
                 <div class="r_about_pic">
                     <ul>
-                        <li><a href="#" target="_blank">
-                            <img src="__IMG__/index/logo.png" alt=""></a></li>
-                        <li><a href="#" target="_blank">
-                            <img src="__IMG__/index/logo.png" alt=""></a></li>
-                        <li><a href="#" target="_blank">
-                            <img src="__IMG__/index/logo.png" alt=""></a></li>
-                        <li><a href="#" target="_blank">
-                            <img src="__IMG__/index/logo.png" alt=""></a></li>
+                        <volist name="about_pic_s" id="ap">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="{:get_cover($ap['cover_id'])['path']}" alt="{$ap['description']}">
+                                </a>
+                            </li>
+                        </volist>
                     </ul>
                 </div>
             </div>
@@ -290,18 +246,18 @@
         </div>
         <div class="c_cont">
             <p>
-                <img src="__IMG__/index/img13.jpg" alt=""></p>
+                <img src="{:get_cover($promise_pic['cover_id'])['path']}" alt=""></p>
             <ul>
-                <li class="lis01">内容内容内容内容内容内容</li>
-                <li class="lis02">内容内容内容内容内容内容内容内容</li>
-                <li class="lis03">内容内容内容内容内容内容内容内容</li>
+                <volist name="promise" id="pe" key="k">
+                    <li class="lis0{$k}">{$pe['description']}</li>
+                </volist>
             </ul>
         </div>
     </div>
     <!--case over-->
     <!--pic_show start-->
     <div class="pic_show2" style="margin: 20px auto;width: 960px;">
-        <img src="__IMG__/index/pic.jpg" width="100%" height="100%" style="padding: 0;margin: 0;">
+        <img src="{:get_cover($advertise2['cover_id'])['path']}" width="100%" height="100%" style="padding: 0;margin: 0;">
     </div>
     <!--pic_show over-->
     <!--滚动2 start-->
@@ -309,42 +265,24 @@
     <div class="run_pic">
         <div class="tit">
             <p>
-                <a href="#" title="" target="_blank">
-                    <img src="__IMG__/index/more.gif" alt="" title="" >
+                <a href="javascript: void (0);" title="{$run_big_t['title']}">
+                    <img src="__IMG__/index/more.gif">
                 </a>
             </p>
             <span>
-            <a href="" title="" target="_blank">龙腾挖机</a>
+            <a href="javascript: void (0);">{$run_big_t['title']}</a>
         </span>
         </div>
         <ul id="ScollNamedls" style="float: left; position: absolute; overflow: hidden;">
             <div style="float: left;overflow: hidden">
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机1</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机2</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机3</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机4</a></span>
-                </li>
+                <volist name="run_big" id="big">
+                    <li><a target="_blank" href="{$big['link']}" title="{$big['title']}"><img src="{:get_cover($big['cover_id'])['path']}" alt="{$big['description']}" title="{$big['title']}" width="223" height="124"/></a></li>
+                </volist>
             </div>
             <div style="float: left; overflow: hidden">
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机5</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机6</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机7</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="__IMG__/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机8</a></span>
-                </li>
+                <volist name="run_big" id="big">
+                    <li><a target="_blank" href="{$big['link']}" title="{$big['title']}"><img src="{:get_cover($big['cover_id'])['path']}" alt="{$big['description']}" title="{$big['title']}" width="223" height="124"/></a></li>
+                </volist>
             </div>
         </ul>
     </div>
@@ -372,39 +310,29 @@
                     </a>
                 </p>
                 <span>
-                <a href="#" title="成功案例" target="_blank">
-                    成功案例
+                <a href="{:U('list/case')}" title="{$case_t['title']}" target="_blank">
+                    {$case_t['title']}
                 </a>
             </span>
             </div>
             <div class="l_tbe_body">
-                <dl>
-                    <dt><a href="#" title="" target="_blank">
-                        <img src="__IMG__/index/logo.png" alt="!" title=""></a></dt>
-                    <dd>
-                        <h4>
-                            <a href="#" title="!" target="_blank">
-                                成功修理案例1
-                            </a>
-                        </h4>
-                        成功修理案例1
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>
-                        <a href="#" title="!" target="_blank">
-                            <img src="__IMG__/index/logo.png" alt="" title="">
-                        </a>
-                    </dt>
-                    <dd>
-                        <h4>
+                <volist name="case" id="cs">
+                    <dl>
+                        <dt>
                             <a href="#" title="" target="_blank">
-                                成功修理案例2
+                                <img src="{:get_cover($cs['cover_id'])['path']}" alt="成功案例" title="成功案例">
                             </a>
-                        </h4>
-                        成功修理案例1成功修理案例1成功修理案例1
-                    </dd>
-                </dl>
+                        </dt>
+                        <dd>
+                            <h4>
+                                <a href="#" title="" target="_blank">
+                                    成功案例
+                                </a>
+                            </h4>
+                            {$cs['description']}
+                        </dd>
+                    </dl>
+                </volist>
             </div>
         </div>
         <div class="tbe_right">
@@ -416,7 +344,7 @@
                 </p>
                 <span>
                     <a href="#" target="_blank" title="">
-                        常见问题
+                        {$problem_t['title']}
                     </a>
                 </span>
             </div>
@@ -425,84 +353,13 @@
                     <tbody>
                     <tr>
                         <td>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题1?</a></dt>
-                                <dd>
-                                    <span>答</span>回答1</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题2</a></dt>
-                                <dd>
-                                    <span>答</span>回答2</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题3</a></dt>
-                                <dd>
-                                    <span>答</span>回答3</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题4</a></dt>
-                                <dd>
-                                    <span>答</span>回答4</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题5</a></dt>
-                                <dd>
-                                    <span>答</span>回答5</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题6</a></dt>
-                                <dd>
-                                    <span>答</span>回答6</dd>
-                            </dl>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题1?</a></dt>
-                                <dd>
-                                    <span>答</span>回答1</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题2</a></dt>
-                                <dd>
-                                    <span>答</span>回答2</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题3</a></dt>
-                                <dd>
-                                    <span>答</span>回答3</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题4</a></dt>
-                                <dd>
-                                    <span>答</span>回答4</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题5</a></dt>
-                                <dd>
-                                    <span>答</span>回答5</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题6</a></dt>
-                                <dd>
-                                    <span>答</span>回答6</dd>
-                            </dl>
-
+                            <volist name="problem" id="pl">
+                                <dl>
+                                    <dt><span>问</span><a href="#" target="_blank">{$pl['title']}</a></dt>
+                                    <dd>
+                                        <span>答</span>{$pl['description']}</dd>
+                                </dl>
+                            </volist>
                         </td>
                     </tr>
                     </tbody>
@@ -519,7 +376,7 @@
     <!--success over-->
     <!--pic_show start-->
     <div class="pic_show3" style="margin: 20px auto;width: 960px;">
-        <img src="__IMG__/index/pic.jpg" width="100%" height="100%" style="padding: 0;margin: 0;">
+        <img src="{:get_cover($advertise3['cover_id'])['path']}" width="100%" height="100%" style="padding: 0;margin: 0;">
     </div>
     <!--pic_show over-->
     <div style="width: 960px;margin: auto">
@@ -528,45 +385,35 @@
             <div class="tit">
                 <p>
                     <a href="#" title="" target="_blank">
-                        <img src="__IMG__/index/more.gif" alt="" title="">
+                        <img src="__IMG__/index/more.gif" alt="最新动态" title="最新动态">
                     </a>
                 </p>
                 <span>
-            <a href="#" title="" target="_blank">
+            <a href="{:U('list/new')}" title="最新动态" target="_blank">
                 最新动态
             </a>
         </span>
             </div>
             <div class="nr">
                 <dl>
-                    <dt><a href="#" title="" target="_blank">
-                        <img src="__IMG__/index/logo.png" alt="" title=""></a></dt>
+                    <dt><a href="{:U('list/new')}" title="" target="_blank">
+                        <img src="{:get_cover($new_first['cover_id'])['path']}" alt="最新动态" title="最新动态"></a></dt>
                     <dd>
                         <h4>
-                            <a href="#" title="" target="_blank">
-                                动态动态
+                            <a href="{:U('article/new/id='.$new_first['id'])}" title="最新动态" target="_blank">
+                                {$new_first['title']}
                             </a>
                         </h4>
-                        内容内容
+                        {$new_first['title']}
                     </dd>
                 </dl>
                 <ul>
-                    <li><span class="fr">
-                        2016-07-15</span><a href="#" title="" target="_blank">
-                        标题1</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-05</span><a href="#" title="" target="_blank">
-                        标题2</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-02</span><a href="#" title="" target="_blank">
-                        标题23</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-01</span><a href="#" title="" target="_blank">
-                        标题4</a>
-                    </li>
+                    <volist name="new" id="nw">
+                        <li><span class="fr">
+                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="{:U('article/new/id='.$ce['id'])}" title="" target="_blank">
+                            {$nw['title']}</a>
+                        </li>
+                    </volist>
                 </ul>
             </div>
         </div>

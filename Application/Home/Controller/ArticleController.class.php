@@ -17,6 +17,8 @@ class ArticleController extends HomeController {
 
     /* 文档模型频道页 */
 	public function index(){
+	    echo 11;
+	    die();
 
 		/* 分类信息 */
 		$category = $this->category();

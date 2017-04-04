@@ -28,9 +28,10 @@
 .brand_show .b_left .bl_header{text-align: center;background: url("../images/index/tit1.gif") no-repeat}
 .brand_show .b_left .bl_header,.b_right .br_header{line-height: 33px;height: 33px;}
 .brand_show a{font-weight: bold;text-decoration: none;font: 16px "微软雅黑"; color: #28272f;}
-.brand_show .b_left a:hover{text-decoration: underline;font-weight: bolder;}
+.brand_show .bl_header a:hover{cursor: inherit;}
+.brand_show .bl_body a:hover{text-decoration: underline;font-weight: bolder;}
 .brand_show .b_left .bl_body{text-align: center;border: 1px solid #ddd;width: 216px;height: 415px;}
-.brand_show .b_left .bl_body ul{padding: 0;}
+.brand_show .b_left .bl_body ul{padding: 0;margin-top: 14px;}
 .brand_show .b_left .bl_body li:first-child{list-style: none;padding-top: 0px;}
 .brand_show .b_left .bl_body li{list-style: none;padding-top: 20px;}
 /*right*/
@@ -52,8 +53,9 @@
 .message_pic .message .msg4{width: 333px;top: 567px;left: 605px;position: absolute;}
 .message_pic .message .msg5{width: 350px;top: 795px;left: 594px;position: absolute;}
 .message_pic .message .msg6{width: 622px;top: 1002px;left: 98px;position: absolute;}
-.message_pic .message dt{font-size: 20px;line-height: 20px;padding-bottom: 10px;font-weight: bold;}
-.message_pic .message dt a{text-decoration: none}
+/*.message_pic .message dt{font-size: 20px;line-height: 20px;padding-bottom: 10px;font-weight: bold;}*/
+.message_pic .message dd a{text-decoration: none;}
+.message_pic .message dd a:hover{cursor: inherit}
 .message_pic .message dd{color: #000;font: 14px "微软雅黑";line-height: 26px;font-weight: bold;padding-left: 5px;margin: 0;}
 /*message over*/
 
