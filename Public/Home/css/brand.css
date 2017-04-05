@@ -16,7 +16,7 @@
 .right .r_list dd a {width: 150px;height: 17px;background: #28272f;margin: 14px auto 0;line-height: 17px;text-align: center;color: #fff;display: block;overflow: hidden;}
 .clear {clear: both;height: 0;line-height: 0;font-size: 0;overflow: hidden;}
 
-.call{width: 201px;float: left;overflow: hidden;font-size: 12px;margin-top: 36px;}
+.call{width: 201px;float: left;overflow: hidden;font-size: 12px;margin-top: 24px;}
 .diys {background: url("../images/index/tit1n.gif") no-repeat scroll 0 0 transparent;color: #333333;font-size: 14px;font-weight: bold;height: 36px;line-height: 36px;overflow: hidden;padding-left: 18px;}
 .sy_con {height:365px;border: solid 1px #CCC;border-top: none;width: 199px;overflow: hidden;background: #FFF;}
 .sy_con h4 {text-align: center;height: 30px;line-height: 30px;font-size: 14px;}

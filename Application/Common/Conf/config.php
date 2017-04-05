@@ -31,17 +31,16 @@ return array(
     /* URL配置 */
 
 
-    'URL_ROUTER_ON'=> true,
-
+    'URL_ROUTER_ON'   => true, //开启路由
     'URL_ROUTE_RULES'=>array(
-        'brand/:id\d$'        =>  'brand/detail',   //品牌页
-        'index'        =>  'Index/index',   //首页
-        'article/:id\d$'     =>  'Article/detail',  //文章页
-        ':category$'=> 'Article/lists'  //列表页
+        'brand/index/:id\d$'    =>  'Index/index',   //文章页
+        'index'                 =>  'Index/index',   //首页
+        'article/:id\d$'        =>  'Article/detail',  //文章页
+        ':category$'            =>  'Article/lists'  //列表页
     ),
-//    'URL_HTML_SUFFIX'=>'.html',
+    'URL_HTML_SUFFIX'=>'',
     'URL_CASE_INSENSITIVE' => true, //默认false 表示URL区分大小写 true则表示不区分大小写
-    'URL_MODEL'            => 1, //URL模式
+    'URL_MODEL'            => 2, //URL模式
     'VAR_URL_PARAMS'       => '', // PATHINFO URL参数变量
     'URL_PATHINFO_DEPR'    => '/', //PATHINFO URL分割符
 

@@ -4,42 +4,18 @@
     <div class="content">
         <!--brand picture start-->
         <div class="brand_pic">
-            <a href="#"><img src="images/banner1.jpg" alt="" title="" width="960" height="240"></a>
+            <a href="javascript: void (0);"><img src="{:get_cover($banner['cover_id'])['path']}" alt="{$banner['title']}" title="{$banner['title']}" width="960" height="240"></a>
         </div>
         <!--brand picture over-->
         <!--产品分类 start-->
         <div class="left">
             <h4 class="diys">
-                产品分类</h4>
+                {$brandTitle['title']}</h4>
             <div class="list">
                 <ul>
-                    <li>
-                        <a href="http://www.vistart.com.cn/yinxinglipin.shtml">银行礼品</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/Product/Product-0001,0011,0035.shtml">保险公司</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/jifenduihuanlipin.shtml">积分兑换礼品</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/yuangongfuli.shtml">员工福利</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/qiche4Sdian.shtml">汽车4S店</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/qiche4Sdian.shtml">汽车4S店</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/qiche4Sdian.shtml">汽车4S店</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/qiche4Sdian.shtml">汽车4S店</a>
-                    </li>
-                    <li>
-                        <a href="http://www.vistart.com.cn/qiche4Sdian.shtml">汽车4S店</a>
-                    </li>
+                    <volist name="brand" id="bd">
+                        <li><a href="{:U('brand/index?id='.$bd['id'])}">{$bd['title']}</a></li>
+                    </volist>
                 </ul>
             </div>
             <div class="leftbot">
@@ -62,10 +38,6 @@
                 <dl class="">
                     <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
                     <dd><a href="#" title="">测试</a></dd>
-                </dl>
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title=""> 测试</a></dd>
                 </dl>
                 <dl class="">
                     <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
@@ -142,28 +114,23 @@
             </span>
             </div>
             <div class="l_tbe_body">
-                <dl>
-                    <dt><a href="#" title="" target="_blank">
-                        <img src="images/logo.png" alt="!" title=""></a></dt>
-                    <dd>
-                        <h4>
-                            <a href="#" title="!" target="_blank">
-                                成功修理案例
-                            </a>
-                        </h4>
-                        成功修理案例
-                    </dd>
-                </dl>
-                <dl>
-                    <dd style="width: 100%">
-                        <h4>
+                <volist name="case" id="cs">
+                    <dl>
+                        <dt>
                             <a href="#" title="" target="_blank">
-                                成功修理案例2
+                                <img src="{:get_cover($cs['cover_id'])['path']}" alt="成功案例" title="成功案例">
                             </a>
-                        </h4>
-                        成功修理案例1成功修理案例1成功修理案例1
-                    </dd>
-                </dl>
+                        </dt>
+                        <dd>
+                            <h4>
+                                <a href="#" title="" target="_blank">
+                                    成功案例
+                                </a>
+                            </h4>
+                            {$cs['description']}
+                        </dd>
+                    </dl>
+                </volist>
             </div>
         </div>
 
@@ -171,45 +138,35 @@
             <div class="tit">
                 <p>
                     <a href="#" title="" target="_blank">
-                        <img src="images/more.gif" alt="" title="">
+                        <img src="__IMG__/index/more.gif" alt="最新动态" title="最新动态">
                     </a>
                 </p>
                 <span>
-            <a href="#" title="" target="_blank">
+            <a href="{:U('list/new')}" title="最新动态" target="_blank">
                 最新动态
             </a>
         </span>
             </div>
             <div class="nr">
                 <dl>
-                    <dt><a href="#" title="" target="_blank">
-                        <img src="images/logo.png" alt="" title=""></a></dt>
+                    <dt><a href="{:U('list/new')}" title="" target="_blank">
+                        <img src="{:get_cover($new_first['cover_id'])['path']}" alt="最新动态" title="最新动态"></a></dt>
                     <dd>
                         <h4>
-                            <a href="#" title="" target="_blank">
-                                动态动态
+                            <a href="{:U('article/new/id='.$new_first['id'])}" title="最新动态" target="_blank">
+                                {$new_first['title']}
                             </a>
                         </h4>
-                        内容内容
+                        {$new_first['title']}
                     </dd>
                 </dl>
                 <ul>
-                    <li><span class="fr">
-                        2016-07-15</span><a href="#" title="" target="_blank">
-                        标题1</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-05</span><a href="#" title="" target="_blank">
-                        标题2</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-02</span><a href="#" title="" target="_blank">
-                        标题23</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-01</span><a href="#" title="" target="_blank">
-                        标题4</a>
-                    </li>
+                    <volist name="new" id="nw">
+                        <li><span class="fr">
+                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="{:U('article/new/id='.$ce['id'])}" title="" target="_blank">
+                            {$nw['title']}</a>
+                        </li>
+                    </volist>
                 </ul>
             </div>
         </div>

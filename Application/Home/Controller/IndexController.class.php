@@ -28,7 +28,7 @@ class IndexController extends HomeController {
         $run_big_t    = D('category')->where('id = 14')->find();
         $problem      = D('document')->where('status = 1 and class = "problem"')->select();
         $case         = D('document')->where('status = 1 and class = "case"')->limit('2')->order('update_time desc')->select();
-        $new          = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time')->select();
+        $new          = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time desc')->select();
         $new_first    = $new[0];
         unset($new[0]);
         $about_pic_s  = D('document')->where('status = 1 and category_id = 31')->select();

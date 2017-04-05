@@ -40,6 +40,7 @@ class ArticleController extends HomeController {
         $this->assign('logo',$this->logo);         // logo
         $this->assign('tel',$this->tel);           // 400tel
 
+        $get = I('get.id');
 
 
 		/* 分类信息 */

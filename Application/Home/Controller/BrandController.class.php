@@ -15,62 +15,48 @@ namespace Home\Controller;
  */
 class BrandController extends HomeController {
 
-
-
-
-
+    protected $banner = [27,44,45,49,53,57,61,65];
+    protected $seo    = [26,43,48,50,54,58,62,66];
+    protected $case   = [24,41,46,52,56,60,63,69];
+    protected $new    = [25,42,47,51,55,58,64,67];
     /* 文档模型频道页 */
     public function index(){
         parent::_initialize();
         $get = I('get.id');
-
-        var_dump($get);
-        die();
-
         $this->assign('nav',$this->nav);           // nav导航
         $this->assign('title',$this->title);       // title
         $this->assign('logo',$this->logo);         // logo
         $this->assign('tel',$this->tel);           // 400tel
 
 
+        $list = D('category')->where("status = 1 and pid = $get")->select();
+        foreach ($list as $item){
 
+            $id = $item['id'];
+           if(in_array($id,$this->banner)){
+               $banner = D('document')->where("status = 1 and category_id = $id")->find(); //banner
+           }elseif (in_array($id,$this->seo)){
+               $seo    = D('document')->where("status = 1 and category_id = $id")->find(); //三要素
+           }elseif (in_array($id,$this->case)){
+               $case   = D('document')->where("status = 1 and category_id = $id")->limit('2')->order('update_time desc')->select(); //成功案例
+           }elseif (in_array($id,$this->new)){
+               $new    = D('document')->where("status = 1 and category_id = $id")->limit('8')->order('update_time desc')->select(); //最新动态
+               $new_first    = $new[0];
+               unset($new[0]);
+           }
 
-
-
-
-        /* 分类信息 */
-        $category = $this->category();
-        //频道页只显示模板，默认不读取任何内容
-        //内容可以通过模板标签自行定制
-
-        /* 模板赋值并渲染模板 */
-        $this->assign('category', $category);
-        $this->display($category['template_index']);
+        }
+        $brand        = D('category')->where('status = 1 and pid = 21')->select();         // 分类列表
+        $brandTitle   = D('category')->where('id = 21')->find();                           // 头部
+        $this->assign('brandTitle',$brandTitle);
+        $this->assign('brand',$brand);
+        $this->assign('banner',$banner);
+        $this->assign('seo',$seo);
+        $this->assign('new_first',$new_first);
+        $this->assign('new',$new);
+        $this->assign('case',$case);
+        $this->display('index');
     }
 
-    /* 文档分类检测 */
-    private function category($id = 3){
-        /* 标识正确性检测 */
-        $id = $id ? $id : I('get.id', 0);
-        if(empty($id)){
-            $this->error('没有指定文档分类！');
-        }
-
-
-        /* 获取分类信息 */
-        $category = D('Category')->info($id);
-        if($category && 1 == $category['status']){
-            switch ($category['display']) {
-                case 0:
-                    $this->error('该分类禁止显示！');
-                    break;
-                //TODO: 更多分类显示状态判断
-                default:
-                    return $category;
-            }
-        } else {
-            $this->error('分类不存在或被禁用！');
-        }
-    }
 
 }
