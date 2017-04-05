@@ -34,6 +34,7 @@ return array(
     'URL_ROUTER_ON'=> true,
 
     'URL_ROUTE_RULES'=>array(
+        'brand/:id\d$'        =>  'brand/detail',   //品牌页
         'index'        =>  'Index/index',   //首页
         'article/:id\d$'     =>  'Article/detail',  //文章页
         ':category$'=> 'Article/lists'  //列表页

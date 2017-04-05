@@ -58,9 +58,9 @@ class IndexController extends HomeController {
         $this->assign('case',$case);              // 成功案例
         $this->assign('new',$new);                // 最新动态
         $this->assign('new_first',$new_first);          // 最新动态
-        $this->assign('about_pic_s',$about_pic_s);// 关于我们小图片
-        $this->assign('about_pic_b',$about_pic_b);// 关于我们大图片
-        $this->assign('about_art',$about_art);// 关于我们文章
+        $this->assign('about_pic_s',$about_pic_s); // 关于我们小图片
+        $this->assign('about_pic_b',$about_pic_b); // 关于我们大图片
+        $this->assign('about_art',$about_art);     // 关于我们文章
         $this->assign('introduce',$introduce);    // 6片简介小段
         $this->assign('brandTitle',$brandTitle);  // 挖机分类
         $this->assign('brand',$brand);            // 分类列表

@@ -17,24 +17,31 @@ class ArticleController extends HomeController {
 
     /* 文档模型频道页 */
 	public function index(){
+
+//		/* 分类信息 */
+//		$category = $this->category();
+//		//频道页只显示模板，默认不读取任何内容
+//		//内容可以通过模板标签自行定制
+//
+//		/* 模板赋值并渲染模板 */
+//		$this->assign('category', $category);
+//		$this->display($category['template_index']);
+
+
+        $this->redirect('article/lists');
+	}
+
+	/* 文档模型列表页 */
+	public function lists($p = 1){
         parent::_initialize();
 
         $this->assign('nav',$this->nav);           // nav导航
         $this->assign('title',$this->title);       // title
         $this->assign('logo',$this->logo);         // logo
         $this->assign('tel',$this->tel);           // 400tel
-		/* 分类信息 */
-		$category = $this->category();
-		//频道页只显示模板，默认不读取任何内容
-		//内容可以通过模板标签自行定制
 
-		/* 模板赋值并渲染模板 */
-		$this->assign('category', $category);
-		$this->display($category['template_index']);
-	}
 
-	/* 文档模型列表页 */
-	public function lists($p = 1){
+
 		/* 分类信息 */
 		$category = $this->category();
 
@@ -93,7 +100,7 @@ class ArticleController extends HomeController {
 	}
 
 	/* 文档分类检测 */
-	private function category($id = 3){
+	private function category($id = 0){
 		/* 标识正确性检测 */
 		$id = $id ? $id : I('get.id', 0);
 //        var_dump($id);
@@ -105,6 +112,8 @@ class ArticleController extends HomeController {
 
 		/* 获取分类信息 */
 		$category = D('Category')->info($id);
+		var_dump($category);
+		die();
 		if($category && 1 == $category['status']){
 			switch ($category['display']) {
 				case 0:

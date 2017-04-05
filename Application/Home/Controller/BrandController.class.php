@@ -15,14 +15,29 @@ namespace Home\Controller;
  */
 class BrandController extends HomeController {
 
+
+
+
+
     /* 文档模型频道页 */
     public function index(){
         parent::_initialize();
+        $get = I('get.id');
+
+        var_dump($get);
+        die();
 
         $this->assign('nav',$this->nav);           // nav导航
         $this->assign('title',$this->title);       // title
         $this->assign('logo',$this->logo);         // logo
         $this->assign('tel',$this->tel);           // 400tel
+
+
+
+
+
+
+
         /* 分类信息 */
         $category = $this->category();
         //频道页只显示模板，默认不读取任何内容
@@ -33,71 +48,10 @@ class BrandController extends HomeController {
         $this->display($category['template_index']);
     }
 
-    /* 文档模型列表页 */
-    public function lists($p = 1){
-        /* 分类信息 */
-        $category = $this->category();
-
-        /* 获取当前分类列表 */
-        $Document = D('Document');
-        $list = $Document->page($p, $category['list_row'])->lists($category['id']);
-        if(false === $list){
-            $this->error('获取列表数据失败！');
-        }
-
-        /* 模板赋值并渲染模板 */
-        $this->assign('category', $category);
-        $this->assign('list', $list);
-        $this->display($category['template_lists']);
-    }
-
-    /* 文档模型详情页 */
-    public function detail($id = 0, $p = 1){
-        /* 标识正确性检测 */
-        if(!($id && is_numeric($id))){
-            $this->error('文档ID错误！');
-        }
-
-        /* 页码检测 */
-        $p = intval($p);
-        $p = empty($p) ? 1 : $p;
-
-        /* 获取详细信息 */
-        $Document = D('Document');
-        $info = $Document->detail($id);
-        if(!$info){
-            $this->error($Document->getError());
-        }
-
-        /* 分类信息 */
-        $category = $this->category($info['category_id']);
-
-        /* 获取模板 */
-        if(!empty($info['template'])){//已定制模板
-            $tmpl = $info['template'];
-        } elseif (!empty($category['template_detail'])){ //分类已定制模板
-            $tmpl = $category['template_detail'];
-        } else { //使用默认模板
-            $tmpl = 'Article/'. get_document_model($info['model_id'],'name') .'/detail';
-        }
-
-        /* 更新浏览数 */
-        $map = array('id' => $id);
-        $Document->where($map)->setInc('view');
-
-        /* 模板赋值并渲染模板 */
-        $this->assign('category', $category);
-        $this->assign('info', $info);
-        $this->assign('page', $p); //页码
-        $this->display($tmpl);
-    }
-
     /* 文档分类检测 */
     private function category($id = 3){
         /* 标识正确性检测 */
         $id = $id ? $id : I('get.id', 0);
-//        var_dump($id);
-//        die();
         if(empty($id)){
             $this->error('没有指定文档分类！');
         }
