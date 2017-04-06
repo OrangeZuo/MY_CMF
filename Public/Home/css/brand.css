@@ -3,13 +3,13 @@
 .brand_pic {width: 960px;margin-bottom: 10px;overflow: hidden;}
 .left {width: 201px;float: left;overflow: hidden;}
 .diys {background: url("../images/index/tit1n.gif") no-repeat scroll 0 0 transparent;color: #333333;font-size: 14px;font-weight: bold;height: 36px;line-height: 36px;overflow: hidden;padding-left: 18px;}
-.list {border: solid 1px #ccc;border-top: 0; padding: 8px 12px;margin-bottom: 10px;zoom: 1;background: #FFF;}
-.list li {background: url(../images/index/ico10.gif) no-repeat 0 10px; line-height: 33px;overflow: hidden;padding: 0 5px 0 30px;font-size: 12px;}
+.list {height:364px;border: solid 1px #ccc;border-top: 0; padding: 8px 12px;margin-bottom: 10px;zoom: 1;background: #FFF;}
+.list li {background: url(../images/index/ico10.gif) no-repeat 0 27px; line-height: 33px;overflow: hidden;padding: 16px 0 0 30px;font-size: 12px;}
 .list li a {height: 25px;line-height: 25px;display: block;}
 .list li a:hover {text-decoration: underline}
 .right {width: 754px;float: left;display: inline;margin-left: 5px;overflow: hidden;font-size: 12px;}
 .right .title{background: url(../images/index/754.gif) no-repeat;height: 36px;line-height: 36px;padding-left: 27px;}
-.right .r_list {border: 1px solid #ccc;border-top: 0;margin-bottom: 10px;background: #fff;width: 752px;padding-top: 10px;}
+.right .r_list {border: 1px solid #ccc;border-top: 0;margin-bottom: 10px;background: #fff;width: 752px;height:370px;padding-top: 10px;}
 .right .r_list dl {float: left;width: 215px;height: 161px;padding: 0 0 26px 26px;overflow: hidden;}
 .right .r_list dt {font-size: 0;line-height: 0;}
 .right .r_list dt img {width: 205px;height: 120px;border: 5px solid #d4d3d4;}

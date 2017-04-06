@@ -27,34 +27,16 @@
         <div class="right">
             <h4 class="title">
                 <div class="tit">
-                    <a href="#">测试</a>
+                    <a href="#">{$product_t['title']}</a>
                 </div>
             </h4>
             <div class="r_list">
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title="">测试</a></dd>
-                </dl>
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title="">测试</a></dd>
-                </dl>
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title=""> 测试</a></dd>
-                </dl>
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title=""> 测试</a></dd>
-                </dl>
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title=""> 测试</a></dd>
-                </dl>
-                <dl class="">
-                    <dt><a href="#"><img src="http://www.vistart.com.cn/UploadFiles/Product/20120926172802_68319.jpg" alt=""></a></dt>
-                    <dd><a href="#" title=""> 测试</a></dd>
-                </dl>
+                <volist name="product" id="pt">
+                    <dl class="">
+                        <dt><a href="#"><img src="{:get_cover($pt['cover_id'])['path']}" alt="{$pt['title']}"></a></dt>
+                        <dd><a href="#" title="{$pt['title']}">{$pt['title']}</a></dd>
+                    </dl>
+                </volist>
                 <div class="clear"></div>
             </div>
         </div>

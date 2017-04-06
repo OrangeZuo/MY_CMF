@@ -33,8 +33,8 @@ return array(
 
     'URL_ROUTER_ON'   => true, //开启路由
     'URL_ROUTE_RULES'=>array(
-        'brand/index/:id\d$'    =>  'Index/index',   //文章页
-        'index'                 =>  'Index/index',   //首页
+        'brand/index/:id\d$'    =>  'index',   //文章页
+        'index'                 =>        'Index/index',   //首页
         'article/:id\d$'        =>  'Article/detail',  //文章页
         ':category$'            =>  'Article/lists'  //列表页
     ),

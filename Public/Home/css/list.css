@@ -21,6 +21,7 @@ ul.cont {
     margin: 8px auto;
     overflow: hidden;
     padding-left: 5px;
+    height:186px;
 }
 ul.cont li {
     line-height: 24px;
@@ -55,11 +56,16 @@ ul.cont a {font-size: 12px;line-height: 12px;;
     border-bottom: 0;
     padding-bottom: 15px;
     overflow: hidden;
+    min-height: 655px;
 }
 .right_main dl{padding: 10px 0px 10px 10px;border-bottom: 1px #ddd dashed;}
 .right_main dl:last-child{border:none;padding: 10px 0px 0px 10px;}
-.right_main dd{padding: 10px 0px 10px 10px;font-size: 16px;color: #ff2438;font-weight: bold;}
+.right_main dd{padding: 10px 0px 10px 10px;font-size: 14px;font-weight: bold;}
+.right_main dd a{color: #d18500;}
+.right_main dd a:hover{text-decoration: underline}
 .right_main dt{padding: 10px 0px 10px 10px;font-size: 14px;color: #333;text-indent: 10px;}
+.right_main .pull-right{margin: auto;display: table;padding-top: 17px;border-bottom: 0px;overflow: hidden}
+.right_main .pull-right p{margin: 0;padding: 0;text-decoration: none;color: red;display: inline}
 .right_bot {
     background: url(../images/index/right_bot2_img.gif) no-repeat;
     height: 3px;
@@ -71,9 +77,9 @@ ul.cont a {font-size: 12px;line-height: 12px;;
 
 .call{width: 277px;float: left;overflow: hidden;font-size: 12px;margin-top: 36px;}
 .diys {margin-bottom: -3px;background: url("../images/index/tit5.jpg") no-repeat scroll 0 0 transparent;color: #333333;font-size: 14px;font-weight: bold;height: 36px;line-height: 36px;overflow: hidden;padding-left: 18px;}
-.sy_con {height:365px;border: solid 1px #CCC;border-top: none;width: 275px;overflow: hidden;background: #FFF;}
+.sy_con {height:372px;border: solid 1px #CCC;border-top: none;width: 275px;overflow: hidden;background: #FFF;}
 .sy_con h4 {text-align: center;height: 60px;line-height: 60px;font-size: 16px;}
 .sy_con .dianh {padding: 0 0px 0 50px;}
-.sy_con .dianhua {background: url("../images/index/Teln.gif") no-repeat scroll 0 20px transparent;color: #666666;line-height: 20px;padding: 20px 0 20px 60px;}
+.sy_con .dianhua {background: url("../images/index/Teln.gif") no-repeat scroll 0 20px transparent;color: #666666;line-height: 20px;padding: 20px 0 20px 60px;font-size: 16px;}
 .sy_con .dianhua span {display: block;font: 18px "Impact";color: #721B85;}
-.sy_con p { line-height: 24px;}
+.sy_con p { line-height: 30px;font-size: 14px;}

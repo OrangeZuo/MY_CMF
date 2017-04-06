@@ -12,24 +12,11 @@
             <h4 class="tit">
                 <a href="#">最新资讯文章</a></h4>
             <ul class="cont" id="cntrLastArticle">
-                <li>
-                    <a href="#" target="_blank">11111111111</a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">222222</a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">3333333333333333</a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">3333333333333333</a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">3333333333333333</a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">3333333333333333</a>
-                </li>
+                <volist name="new" id="nw">
+                    <li>
+                        <a href="{:U('detail?id='.$nw['id'])}" target="_blank">{$nw['title']}</a>
+                    </li>
+                </volist>
             </ul>
             <div class="right2bot">
             </div>
@@ -38,35 +25,38 @@
             <div class="right_top">
             </div>
             <div class="right_main">
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
-                <dl>
-                    <dd>标题</dd>
-                    <dt>内容内容内容内容内容内容内容内容内容</dt>
-                </dl>
+                <volist name="list" id="lt">
+                    <dl>
+                        <dd><a href="{:U('detail?id='.$lt['id'])}" target="_blank">{$lt['title']}</a></dd>
+                        <dt>{$lt['description']}</dt>
+                    </dl>
+                </volist>
 
+                <span class="pull-right">
+                    共<p>{$total}</p>条新闻
+                    <if condition="($page eq 1) and ($pageNum gt 1)">
+                        <a>首页</a>
+                        <a>上一页</a>
+                        <a href="{:U('?page='.$next)}"><p>下一页</p></a>
+                        <a href="{:U('?page='.$last)}"><p>尾页</p></a>
+                        <elseif condition="($page egt 1) and ($page neq $pageNum) and ($pageNum gt 0)"/>
+                        <a href="{:U('?page='.$first)}"><p>首页</p></a>
+                        <a href="{:U('?page='.$prev)}"><p>上一页</p></a>
+                        <a href="{:U('?page='.$next)}"><p>下一页</p></a>
+                        <a href="{:U('?page='.$last)}"><p>尾页</p></a>
+                        <elseif condition="($page eq $pageNum) and ($page neq 1) and ($pageNum gt 1)"/>
+                        <a href="{:U('?page='.$first)}"><p>首页</p></a>
+                        <a href="{:U('?page='.$prev)}"><p>上一页</p></a>
+                        <a>下一页</a>
+                        <a>尾页</a>
+                        <elseif  condition="$page eq $pageNum"/>
+                        <a>首页</a>
+                        <a>上一页</a>
+                        <a>下一页</a>
+                        <a>尾页</a>
+                    </if>
+                    页次：<p>{$page}</p>/<p>{$pageNum}</p>
+				</span>
             </div>
             <div class="right_bot">
             </div>

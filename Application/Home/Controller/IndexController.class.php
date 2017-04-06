@@ -42,10 +42,7 @@ class IndexController extends HomeController {
         $problem_t    = D('category')->where('id = 28')->find();
 
 
-        $this->assign('nav',$this->nav);           // nav导航
-        $this->assign('title',$this->title);       // title
-        $this->assign('logo',$this->logo);         // logo
-        $this->assign('tel',$this->tel);           // 400tel
+
         $this->assign('banner',$banner);           // banner
         $this->assign('run_small',$run_small);     // 滚动小图
         $this->assign('advertise1',$advertise1);   // 广告1

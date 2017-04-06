@@ -15,10 +15,11 @@ namespace Home\Controller;
  */
 class BrandController extends HomeController {
 
-    protected $banner = [27,44,45,49,53,57,61,65];
-    protected $seo    = [26,43,48,50,54,58,62,66];
-    protected $case   = [24,41,46,52,56,60,63,69];
-    protected $new    = [25,42,47,51,55,58,64,67];
+    protected $banner  = [27,44,45,49,53,57,61,65];
+    protected $seo     = [26,43,48,50,54,58,62,66];
+    protected $case    = [24,41,46,52,56,60,63,69];
+    protected $new     = [25,42,47,51,55,58,64,67];
+    protected $product = [70,71,72,73,74,75,76,77];
     /* 文档模型频道页 */
     public function index(){
         parent::_initialize();
@@ -43,6 +44,9 @@ class BrandController extends HomeController {
                $new    = D('document')->where("status = 1 and category_id = $id")->limit('8')->order('update_time desc')->select(); //最新动态
                $new_first    = $new[0];
                unset($new[0]);
+           }elseif (in_array($id,$this->product)){
+               $product_t    = D('category')->where("status = 1 and id = $id")->find(); //产品展示标题
+               $product    = D('document')->where("status = 1 and category_id = $id")->limit('6')->order('update_time desc')->select(); //产品展示图文
            }
 
         }
@@ -55,6 +59,8 @@ class BrandController extends HomeController {
         $this->assign('new_first',$new_first);
         $this->assign('new',$new);
         $this->assign('case',$case);
+        $this->assign('product',$product);
+        $this->assign('product_t',$product_t);
         $this->display('index');
     }
 
