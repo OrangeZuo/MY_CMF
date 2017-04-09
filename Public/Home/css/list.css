@@ -80,6 +80,7 @@ ul.cont a {font-size: 12px;line-height: 12px;;
 .sy_con {height:372px;border: solid 1px #CCC;border-top: none;width: 275px;overflow: hidden;background: #FFF;}
 .sy_con h4 {text-align: center;height: 60px;line-height: 60px;font-size: 16px;}
 .sy_con .dianh {padding: 0 0px 0 50px;}
+.sy_con .dianh p{font-size: 14px;line-height: 40px;}
 .sy_con .dianhua {background: url("../images/index/Teln.gif") no-repeat scroll 0 20px transparent;color: #666666;line-height: 20px;padding: 20px 0 20px 60px;font-size: 16px;}
 .sy_con .dianhua span {display: block;font: 18px "Impact";color: #721B85;}
 .sy_con p { line-height: 30px;font-size: 14px;}

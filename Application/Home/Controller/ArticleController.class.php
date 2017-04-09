@@ -34,7 +34,8 @@ class ArticleController extends HomeController {
 	/* 文档模型列表页 */
 	public function lists(){
         $new         = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time desc')->select();
-        $category = I('get.category');
+        @$category = I('get.category');
+        @$key      = I('get.key');
         if(!empty($category) && isset($category)){
             if($category == self::_CASE){
                 $sql = 'status = 1 and class = "case"';
@@ -43,11 +44,16 @@ class ArticleController extends HomeController {
             }elseif ($category == self::_PRODUCT){
                 $sql = 'status = 1 and class = "product"';
             }
+        }elseif(!empty($key) && isset($key)){
+            $sql = "status = 1 and title like $key";
         }else{
             $sql = 'class = "product" or class = "case" or class = "product" and status = 1';
         }
 
         $total = D('document') -> where($sql) -> count();
+        if(!$total){
+            $this->error('没有此内容!');
+        }
         $n = 8;
         $page = isset($_GET['page'])?intval($_GET['page']):1;
         $pageNum = ceil($total/$n);
@@ -76,7 +82,42 @@ class ArticleController extends HomeController {
 	/* 文档模型详情页 */
 	public function detail($p = 0){
 
-        $id = I('get.id');
+        @$id  = I('get.id');
+        if(isset($id) && !empty($id)){
+            $Document = D('Document');
+            $info     = $Document->detail($id);
+            if(!$info){
+                $this->error($Document->getError());
+            }
+            $keywords = $info['keywords'];
+            $keywords = explode(',',$keywords);
+            $new          = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time desc')->select();
+
+
+            /* 分类信息 */
+            $category    = $this->category($info['category_id']);
+            $category_id = $category['id'];
+
+            //上下篇
+            $prev = D('document')->where("status = 1 and id < $id and category_id = $category_id")->order('id desc')->limit(1)->find();
+            $next = D('document')->where("status = 1 and id > $id and category_id = $category_id")->order('id asc')->limit(1)->find();
+
+
+            $this->assign('prev',$prev);
+            $this->assign('next',$next);
+            $this->assign('info',$info);
+            $this->assign('new',$new);
+            $this->assign('keywords',$keywords);
+
+
+
+
+
+
+//            var_dump($id);
+//            die();
+        }
+
 		/* 标识正确性检测 */
 		if(!($id && is_numeric($id))){
 			$this->error('文档ID错误！');
@@ -99,8 +140,6 @@ class ArticleController extends HomeController {
 		$Document->where($map)->setInc('view');
 
 		/* 模板赋值并渲染模板 */
-		$this->assign('category', $category);
-		$this->assign('info', $info);
 		$this->assign('page', $p); //页码
 		$this->display('detail');
 	}

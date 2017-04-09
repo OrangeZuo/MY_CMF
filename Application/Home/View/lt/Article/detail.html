@@ -1,4 +1,8 @@
 <extend name="Base/common"/>
+<block name="meta"><title>{$info['title']}</title>
+<meta name="keywords" content="{$info['keywords']}" />
+<meta name="description" content="{$info['description']}" /></block>
+<block name="css"><link href="__CSS__/index.css" rel="stylesheet" type="text/css" /></block>
 <block name="css"><link href="__CSS__/article.css" rel="stylesheet" type="text/css" /></block>
 <block name="body">
 
@@ -14,14 +18,33 @@
         </div>
         <div class="right_main">
             <dl>
-                <dd>标题</dd>
-                <dt>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
-                    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                <dd>{$info['title']}</dd>
+                <dt>
+                    {$info['content']}
                 </dt>
             </dl>
             <div class="page">
-                <a href="#" style="float: left">上一篇</a>
-                <a href="#" style="float: right">下一篇</a>
+                <?php if(isset($prev['id']) && !empty($prev['id'])):?>
+                <a href="{:U('detail?id='.$prev['id'])}" style="float: left">上一篇：{$prev['title']}</a>
+                <?php else:?>
+                <a style="float: left">上一篇：没有了</a>
+                <?php endif;?>
+
+                <?php if(isset($next['id']) && !empty($next['id'])):?>
+                <a href="{:U('detail?id='.$next['id'])}" style="float: right">下一篇：{$next['title']}</a>
+                <?php else:?>
+                <a style="float: right">下一篇：没有了</a>
+                <?php endif;?>
+            </div>
+            <div class="keywordMessage" style="border-bottom: 1px solid #ddd;">
+                <p style="font-size: 16px;font-weight: bold;line-height: 30px;">此文关键字：
+                    <span style="text-align: center;display: -moz-box;font-size: 14px;">
+                          <volist name="keywords" id="ks">
+                    <a href="{:U('lists?key='.$ks)}" style="padding-right: 20px;display: table;overflow: hidden;float: right">{$ks}</a>
+                    </volist>
+                    </span>
+
+                </p>
             </div>
             <div class="tj" style="padding-top: 20px;">
                 <div class="title">推荐产品</div>
@@ -60,24 +83,11 @@
         <h4 class="tit">
             <a href="#">最新资讯文章</a></h4>
         <ul class="cont" id="cntrLastArticle">
-            <li>
-                <a href="#" target="_blank">11111111111</a>
-            </li>
-            <li>
-                <a href="#" target="_blank">222222</a>
-            </li>
-            <li>
-                <a href="#" target="_blank">3333333333333333</a>
-            </li>
-            <li>
-                <a href="#" target="_blank">3333333333333333</a>
-            </li>
-            <li>
-                <a href="#" target="_blank">3333333333333333</a>
-            </li>
-            <li>
-                <a href="#" target="_blank">3333333333333333</a>
-            </li>
+            <volist name="new" id="nw">
+                <li>
+                    <a href="{:U('detail?id='.$nw['id'])}" target="_blank">{$nw['title']}</a>
+                </li>
+            </volist>
         </ul>
         <div class="right2bot">
         </div>
@@ -87,32 +97,27 @@
             联系我们</h4>
         <div class="sycp">
             <div class="sy_con" id="leftlx">
-                <h4>
-                    标题
-                </h4>
-                <div class="dianh">
+                <div class="dianh" style="padding-top: 40px;">
                     <div class="dianhua">
                         全国热线:
                         <span>
                             <b>
-                                400044444
+                                {$about['tel']}
                             </b>
                         </span>
                     </div>
                     <p>
-                        招商：400044444
+                        联系人：{$about['people']}
                     </p>
 
                     <p>
-                        邮箱：12333344@qq.com
+                        邮箱：{$about['email']}
                     </p>
                     <p>
-                        联系电话：13333333333
+                        联系电话：{$about['phone']}
                     </p>
                     <p>
-                        邮编：401220</p>
-                    <p>
-                        地址：重庆市解放碑
+                        地址：{$about['address']}
                     </p>
                 </div>
             </div>

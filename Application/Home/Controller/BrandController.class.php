@@ -50,6 +50,7 @@ class BrandController extends HomeController {
            }
 
         }
+
         $brand        = D('category')->where('status = 1 and pid = 21')->select();         // 分类列表
         $brandTitle   = D('category')->where('id = 21')->find();                           // 头部
         $this->assign('brandTitle',$brandTitle);

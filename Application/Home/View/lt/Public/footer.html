@@ -4,7 +4,7 @@
         <div class="foot_menu">
             <a title="" href="#">修理挖机</a><a title="" href="#">挖机修理</a><a title="" href="#">修挖机里</a><a title="" href="#">瓦力秀吉</a><a title="" href="">联系我们</a><a title="网站地图" href="">网站地图</a><a title="其他" href="">其他</a></div>
         <div class="wenz1">
-            龙腾挖机 版权所有 备案号：<a href="#" target="_blank">渝ICP备20170909009号-1</a>
+            龙腾挖机 版权所有 备案号：<a href="#" target="_blank">{:C('WEB_SITE_ICP')}</a>
             <script src="#" language="JavaScript"></script>
             <script src="#" charset="utf-8" type="text/javascript"></script>
             <a href="#" target="_blank" title="站长统计"><img src="http://icon.cnzz.com/img/pic1.gif" vspace="0" hspace="0" border="0"></a>
@@ -12,12 +12,12 @@
             <!--var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");-->
             <!--document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2c3510c5f224bff89ae4f8ed00436092' type='text/javascript'%3E%3C/script%3E"));-->
             <!--</script><script src="#" type="text/javascript"></script>-->
-            <a href="#" target="_blank">
-                <img src="http://eiv.baidu.com/hmt/icon/21.gif" height="20" border="0" width="20"></a>
+            <!--<a href="#" target="_blank">-->
+                <!--<img src="http://eiv.baidu.com/hmt/icon/21.gif" height="20" border="0" width="20"></a>-->
             <br>
-            地址：<span id="address">重庆市沙坪坝区</span>邮箱：<span id="emails">12346@qq.com</span>
+            地址：<span id="address">{$about['address']}</span>&nbsp;&nbsp;邮箱：<span id="emails">{$about['email']}</span>
             <br>
-            联系电话：40000000 联系人：<span id="Fname">你好先生</span><span id="IPhones">13883838383</span>
+            联系人：<span id="Fname">{$about['people']}</span>&nbsp;&nbsp;400联系电话：{$about['tel']}&nbsp;&nbsp;手机：<span id="IPhones">{$about['phone']}</span>
             <br>
 
         </div>

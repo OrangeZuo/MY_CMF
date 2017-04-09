@@ -1,4 +1,7 @@
 <extend name="Base/common"/>
+<block name="meta"><title>{$seo['title']}</title>
+<meta name="keywords" content="{$seo['keywords']}" />
+<meta name="description" content="{$seo['description']}" /></block>
 <block name="css"><link href="__CSS__/brand.css" rel="stylesheet" type="text/css" /></block>
 <block name="body">
     <div class="content">
@@ -48,32 +51,27 @@
                 联系我们</h4>
             <div class="sycp">
                 <div class="sy_con" id="leftlx">
-                    <h4>
-                        标题
-                    </h4>
-                    <div class="dianh">
+                    <div class="dianh" style="padding-top: 40px;">
                         <div class="dianhua">
                             全国热线:
                             <span>
                             <b>
-                                400044444
+                                {$about['tel']}
                             </b>
                         </span>
                         </div>
                         <p>
-                            招商：400044444
+                            联系人：{$about['people']}
                         </p>
 
                         <p>
-                            邮箱：12333344@qq.com
+                            邮箱：{$about['email']}
                         </p>
                         <p>
-                            联系电话：13333333333
+                            联系电话：{$about['phone']}
                         </p>
                         <p>
-                            邮编：401220</p>
-                        <p>
-                            地址：重庆市解放碑
+                            地址：{$about['address']}
                         </p>
                     </div>
                 </div>

@@ -1,4 +1,7 @@
 <extend name="Base/common"/>
+<block name="meta"><title>{:C('WEB_SITE_TITLE')}</title>
+<meta name="keywords" content="{:C('WEB_SITE_KEYWORD')}" />
+<meta name="description" content="{:C('WEB_SITE_DESCRIPTION')}" /></block>
 <block name="css"><link href="__CSS__/index.css" rel="stylesheet" type="text/css" /></block>
 <block name="body">
     <div id="focus" class="banners" style="position: relative; visibility:hidden;">
@@ -153,30 +156,12 @@
                 </div>
                 <div class="br_body">
                     <div class="br_content" style="padding-top: 30px;">
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="__IMG__/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="__IMG__/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="__IMG__/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="__IMG__/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="__IMG__/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="__IMG__/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
+                        <volist name="product" id="pt">
+                            <dl>
+                                <dt><a href="{:U('article/detail?id='.$pt['id'])}" target="_blank" title=""><img src="{:get_cover($pt['cover_id'])['path']}"></a></dt>
+                                <dd><a href="{:U('article/detail?id='.$pt['id'])}" target="_blank" title="">{$pt['title']}</a></dd>
+                            </dl>
+                        </volist>
                     </div>
                 </div>
             </div>
@@ -474,7 +459,7 @@
             <div class="aa2">
                 <a href="#" title="">
                     <img src="__IMG__/index/logo.png" alt="" ></a><p>
-                招商热线<span>40000000</span></p>
+                招商热线<span>{$about['tel']}</span></p>
             </div>
         </div>
     </div>

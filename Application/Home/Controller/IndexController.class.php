@@ -29,6 +29,8 @@ class IndexController extends HomeController {
         $problem      = D('document')->where('status = 1 and class = "problem"')->select();
         $case         = D('document')->where('status = 1 and class = "case"')->limit('2')->order('update_time desc')->select();
         $new          = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time desc')->select();
+        $product      = D('document')->where('status = 1 and class = "product"')->limit('6')->order('update_time desc')->select();
+
         $new_first    = $new[0];
         unset($new[0]);
         $about_pic_s  = D('document')->where('status = 1 and category_id = 31')->select();
@@ -54,6 +56,7 @@ class IndexController extends HomeController {
         $this->assign('problem_t',$problem_t);    // 常见问题标题
         $this->assign('case',$case);              // 成功案例
         $this->assign('new',$new);                // 最新动态
+        $this->assign('product',$product);                // 产品展示图
         $this->assign('new_first',$new_first);          // 最新动态
         $this->assign('about_pic_s',$about_pic_s); // 关于我们小图片
         $this->assign('about_pic_b',$about_pic_b); // 关于我们大图片

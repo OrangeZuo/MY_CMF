@@ -21,6 +21,7 @@
 .sy_con {height:365px;border: solid 1px #CCC;border-top: none;width: 199px;overflow: hidden;background: #FFF;}
 .sy_con h4 {text-align: center;height: 30px;line-height: 30px;font-size: 14px;}
 .sy_con .dianh {padding: 0 5px 0 10px;}
+.sy_con .dianh p{font-size: 12px;line-height: 40px;}
 .sy_con .dianhua {background: url("../images/index/Teln.gif") no-repeat scroll 0 10px transparent;color: #666666;line-height: 10px;padding: 10px 0 10px 55px;}
 .sy_con .dianhua span {display: block;font: 18px "Impact";color: #721B85;}
 .sy_con p { line-height: 24px;}

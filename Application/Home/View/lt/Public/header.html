@@ -19,7 +19,7 @@
     <div class="nav">
         <ul>
             <volist name="nav" id="data" key="k">
-                <li <?php if(stristr($_SERVER['REQUEST_URI'],$data['url']) || $k == 1): ?> class="cur" <?php endif; ?>><a title="" href="{:U($data['url'])}"><span>{$data.title}</span></a></li>
+                <li <?php if(stristr($_SERVER['REQUEST_URI'],$data['url']) || $data['url'] == null  || ($data['url'] == 'Index/index' && $_SERVER['REQUEST_URI'] == '/')): ?> class="cur" <?php endif; ?>><a title="" href="{:U($data['url'])}"><span>{$data.title}</span></a></li>
             </volist>
 
         </ul>
