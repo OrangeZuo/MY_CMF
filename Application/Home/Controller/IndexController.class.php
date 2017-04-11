@@ -26,11 +26,11 @@ class IndexController extends HomeController {
         $advertise3   = D('document')->where('status = 1 and category_id = 13')->find();
         $run_big      = D('document')->where('status = 1 and category_id = 14')->select();
         $run_big_t    = D('category')->where('id = 14')->find();
+        $back         = D('document')->where('status = 1 and category_id = 79')->find();
         $problem      = D('document')->where('status = 1 and class = "problem"')->select();
         $case         = D('document')->where('status = 1 and class = "case"')->limit('2')->order('update_time desc')->select();
         $new          = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time desc')->select();
         $product      = D('document')->where('status = 1 and class = "product"')->limit('6')->order('update_time desc')->select();
-
         $new_first    = $new[0];
         unset($new[0]);
         $about_pic_s  = D('document')->where('status = 1 and category_id = 31')->select();
@@ -41,33 +41,38 @@ class IndexController extends HomeController {
         $brand        = D('category')->where('status = 1 and pid = 21')->select();
         $promise      = D('document')->where('status = 1 and category_id = 2')->select();
         $promise_pic  = D('document')->where('status = 1 and category_id = 33')->find();
+        $promise_pic_s  = D('document')->where('status = 1 and category_id = 80')->find();
         $problem_t    = D('category')->where('id = 28')->find();
 
 
+        $keyword      = explode(',',C('INDEX_KEYWORDS'));
 
         $this->assign('banner',$banner);           // banner
         $this->assign('run_small',$run_small);     // 滚动小图
         $this->assign('advertise1',$advertise1);   // 广告1
-        $this->assign('advertise2',$advertise2);  // 广告2
-        $this->assign('advertise3',$advertise3);  // 广告3
-        $this->assign('run_big',$run_big);        // 滚动大图
-        $this->assign('run_big_t',$run_big_t);    // 滚动大图标题
-        $this->assign('problem',$problem);        // 常见问题
-        $this->assign('problem_t',$problem_t);    // 常见问题标题
-        $this->assign('case',$case);              // 成功案例
-        $this->assign('new',$new);                // 最新动态
-        $this->assign('product',$product);                // 产品展示图
-        $this->assign('new_first',$new_first);          // 最新动态
+        $this->assign('advertise2',$advertise2);   // 广告2
+        $this->assign('advertise3',$advertise3);   // 广告3
+        $this->assign('run_big',$run_big);         // 滚动大图
+        $this->assign('run_big_t',$run_big_t);     // 滚动大图标题
+        $this->assign('problem',$problem);         // 常见问题
+        $this->assign('problem_t',$problem_t);     // 常见问题标题
+        $this->assign('case',$case);               // 成功案例
+        $this->assign('new',$new);                 // 最新动态
+        $this->assign('product',$product);         // 产品展示图
+        $this->assign('new_first',$new_first);     // 最新动态
         $this->assign('about_pic_s',$about_pic_s); // 关于我们小图片
         $this->assign('about_pic_b',$about_pic_b); // 关于我们大图片
         $this->assign('about_art',$about_art);     // 关于我们文章
-        $this->assign('introduce',$introduce);    // 6片简介小段
-        $this->assign('brandTitle',$brandTitle);  // 挖机分类
-        $this->assign('brand',$brand);            // 分类列表
-        $this->assign('promise',$promise);        // 维修承诺文
-        $this->assign('promise_pic',$promise_pic);// 维修承诺图
-//        var_dump($new_first);
-//        die();
+        $this->assign('introduce',$introduce);     // 6片简介小段
+        $this->assign('brandTitle',$brandTitle);   // 挖机分类
+        $this->assign('brand',$brand);             // 分类列表
+        $this->assign('promise',$promise);         // 维修承诺文
+        $this->assign('promise_pic',$promise_pic); // 维修承诺图
+        $this->assign('promise_pic_s',$promise_pic_s); // 维修承诺小图
+        $this->assign('keyword',$keyword);         // 搜索关键词
+        $backimg = get_cover($back['cover_id'])['path'];
+
+        $this->assign('back',$backimg);               // 优势背景图
 
         $this->display();
     }

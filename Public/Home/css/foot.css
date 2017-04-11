@@ -2,10 +2,11 @@
 .footers {background: url(../images/index/ico5.gif) repeat-x top;}
 .footer {position: relative;font-size: 12px;}
 .foot_menu {text-align: center;height: 43px;line-height: 43px;color: #888888;}
-.wenz1 {text-align: center;line-height: 24px;padding-top: 33px;color: #54585b;}
+.wenz1 {text-align: center;line-height: 24px;padding-top: 10px;color: #54585b;}
 .ico01 {position: absolute;left: 99px;top: 97px;}
 .ico02 {position: absolute;right: 86px;top: 97px;}
 .footerlink {text-align: center;}
+.footerlink a{line-height: 14px;}
 .foot_menu a {color: #721B85;padding: 0 8px;}
 .wenz1 a {padding: 0 10px;}
 /*footer over*/

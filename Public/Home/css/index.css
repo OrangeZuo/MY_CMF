@@ -16,7 +16,90 @@
 /*主体开始*/
 /* 产品滚动图 start */
 .content{width: 960px;height: 100%;margin: auto}
-.brand { height:60px; background:#e3e5e4; padding:11px 10px 0 6px;}
+
+
+
+.search {
+    height: 33px;
+    padding: 6px 0 0 27px;
+    margin-top: 11px;
+    background: #e4e4e4;
+}
+.fl {
+    float: left;
+}
+.ss2 {
+    float: left;
+    width: 585px;
+    padding-left: 27px;
+    color: #4e4e4e;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+}
+.ss1 .k1 {
+    width: 223px;
+    padding-left: 6px;
+    height: 27px;
+    line-height: 27px;
+    border: 0;
+    background: #fff;
+    color: #aaaaaa;
+    display: inline-block;
+    margin-right: 11px;
+}
+select, input, button, textarea, button {
+    font: 99% arial,helvetica,clean,sans-serif;
+}
+input, select {
+    vertical-align: middle;
+}
+input[type="image" i], input[type="file" i] {
+    -webkit-appearance: initial;
+    background-color: initial;
+    padding: initial;
+    border: initial;
+}
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border: 2px inset;
+}
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+input, textarea, keygen, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+.ss2 {
+    float: left;
+    width: 585px;
+    padding-left: 27px;
+    color: #4e4e4e;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+}
+.ss2 a {
+    color: #4e4e4e;
+     padding: 0 6px;
+}
+
+.brand { height:60px; background:#e3e5e4; padding:11px 10px 0 6px; margin-top: 10px;}
 .fl{float: left}
 .jiao1 { padding-top:12px;}
 .brand li { float:left; font-size:0; line-height:0; padding-left:8px;}

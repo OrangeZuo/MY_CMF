@@ -22,10 +22,15 @@ class ChannelModel extends Model{
 	 * @author 鬼国二少 <guiguoershao@163.com>
 	 */
 	public function lists($field = true){
-		$map = array('status' => 1);
+		$map = array('status' => 1,'master'=>1);
 		$list = $this->field($field)->where($map)->order('sort')->select();
-
 		return list_to_tree($list, 'id', 'pid', '_');
 	}
+
+    public function lists_foot($field = true){
+        $map = array('status' => 1,'master'=>0);
+        $list = $this->field($field)->where($map)->order('sort')->select();
+        return list_to_tree($list, 'id', 'pid', '_');
+    }
 
 }

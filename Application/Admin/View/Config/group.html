@@ -35,6 +35,11 @@
 				<textarea name="config[{$config.name}]">{$config.value}</textarea>
 			</label>
 			</case>
+				<case value="5">
+					<label class="textarea input-large">
+						<textarea name="config[{$config.name}]">{$config.value}</textarea>
+					</label>
+				</case>
 			<case value="4">
 			<select name="config[{$config.name}]">
 				<volist name=":parse_config_attr($config['extra'])" id="vo">
@@ -43,7 +48,7 @@
 			</select>
 			</case>
 			</switch>
-				
+
 			</div>
 		</div>
 		</volist>

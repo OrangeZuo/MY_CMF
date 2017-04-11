@@ -2,7 +2,9 @@
 <div class="footers">
     <div class="footer">
         <div class="foot_menu">
-            <a title="" href="#">修理挖机</a><a title="" href="#">挖机修理</a><a title="" href="#">修挖机里</a><a title="" href="#">瓦力秀吉</a><a title="" href="">联系我们</a><a title="网站地图" href="">网站地图</a><a title="其他" href="">其他</a></div>
+            <volist name="nav_foot" id="n_t">
+                <a title="{$n_t['title']}" href="{$n_t['url']}">{$n_t['title']}</a>
+            </volist>
         <div class="wenz1">
             龙腾挖机 版权所有 备案号：<a href="#" target="_blank">{:C('WEB_SITE_ICP')}</a>
             <script src="#" language="JavaScript"></script>
@@ -27,8 +29,9 @@
         <div class="ico02">
             <a title="" href="javascript:void(0);">
                 <img src="__IMG__/index/img02.gif" alt=""></a></div><div class="footerlink">
-        <a href="" title="">挖机修理</a>|<a href="#" title="">修理挖机</a>|<a href="" title="">买挖机</a><br>
-        <a href="#" title="">轻轻轻轻</a> <a href="#" title=""></a>|<a href="#" title="">走走走走走走</a>|<a href="" title="">车车车和车</a>
+            <volist name="link" id="lkf">
+                |<a href="{$lkf['link']}" title="{$lkf['title']}">{$lkf['title']}</a>|
+            </volist>
     </div>
     </div>
 </div>

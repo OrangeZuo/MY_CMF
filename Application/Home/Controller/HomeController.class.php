@@ -18,6 +18,7 @@ use Think\Model;
 class HomeController extends Controller {
 
     protected $nav;
+    protected $nav_foot;
     protected $logo;
     protected $title;
     protected $tel;
@@ -33,13 +34,17 @@ class HomeController extends Controller {
 
         $Channel = new \Home\Model\ChannelModel();
         $this->nav      = $Channel->lists();
+        $this->nav_foot = $Channel->lists_foot();
         $this->logo     = D('document')->where('status = 1 and category_id = 5')->find();
         $this->title    = D('document')->where('status = 1 and category_id = 7')->find();
         $this->tel      = D('document')->where('status = 1 and category_id = 8')->find();
         $about          = D('document')->where('status = 1 and category_id = 78')->find();
+        $link           = D('document')->where('status = 1 and category_id = 81')->select();
         $aboutid        = $about['id'];
         $this->about    = D('document_aboutus')->where("id = $aboutid")->find();
         $this->assign('nav',$this->nav);           // nav导航
+        $this->assign('nav_foot',$this->nav_foot); // nav底部导航
+        $this->assign('link',$link);               // 底部外链
         $this->assign('title',$this->title);       // title
         $this->assign('logo',$this->logo);         // logo
         $this->assign('tel',$this->tel);           // 400tel
