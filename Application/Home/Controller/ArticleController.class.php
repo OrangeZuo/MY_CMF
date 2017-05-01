@@ -18,6 +18,8 @@ class ArticleController extends HomeController {
     const _CASE    = 1;
     const _NEW     = 2;
     const _PRODUCT = 3;
+    const _QIANGXIANG = 4;
+    const _GUZHANG = 5;
 
 
     public function _initialize()
@@ -35,7 +37,9 @@ class ArticleController extends HomeController {
 	public function lists(){
         $new         = D('document')->where('status = 1 and class = "new"')->limit('8')->order('update_time desc')->select();
         @$category = I('get.category');
-        @$key      = I('get.key');
+        @$key      = I('get.keywords');
+//        var_dump($key);
+//        die();
         if(!empty($category) && isset($category)){
             if($category == self::_CASE){
                 $sql = 'status = 1 and class = "case"';
@@ -43,6 +47,10 @@ class ArticleController extends HomeController {
                 $sql = 'status = 1 and class = "new"';
             }elseif ($category == self::_PRODUCT){
                 $sql = 'status = 1 and class = "product"';
+            }elseif ($category == self::_QIANGXIANG){
+                $sql = 'status = 1 and class = "qiangxiang"';
+            }elseif ($category == self::_GUZHANG){
+                $sql = 'status = 1 and class = "guzhang"';
             }
         }elseif(!empty($key) && isset($key)){
             $sql = "status = 1 and title like $key";

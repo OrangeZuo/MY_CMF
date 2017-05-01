@@ -110,7 +110,8 @@
     <div class="content">
         <div class="search">
             <div class="ss1 fl">
-                <input name="" id="seachkeywords" type="text" class="k1" value="请输入关键词" onclick="this.value = '';" onblur="if(this.value == ''){this.value='请输入关键词'}"><input name="" type="image" onclick="xuanze();" src="__IMG__/Index/btn1.gif"></div>
+                <input name="" id="seachkeywords" type="text" class="k1" value="请输入关键词" onclick="this.value = '';" onblur="if(this.value == ''){this.value='请输入关键词'}">
+                <input name="" type="image" onclick="xuanze();" src="__IMG__/Index/btn1.gif"></div>
             <div class="ss2" style="font-size: 12px;">
                 热门关键词: <span id="commonHeaderkeywords">
                 <volist name="keyword" id="kd">
@@ -119,6 +120,12 @@
             </span>
             </div>
         </div>
+        <script>
+            function xuanze(){
+                var that = document.getElementById('seachkeywords').value;
+                window.location.href="/article/lists/keywords/"+that;
+            }
+        </script>
         <!-- 产品滚动图 start-->
         <div id="brand" class="brand mt12">
             <div class="jiao1 fl" style="padding-right:10px;" id="LeftIDhz">

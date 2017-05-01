@@ -12,12 +12,19 @@
         <!--brand picture over-->
         <!--产品分类 start-->
         <div class="left">
-            <h4 class="diys">
-                {$brandTitle['title']}</h4>
+            <h4 class="diys"><a href="{:U('/article/lists?category=4')}">{$qiangxiang_t['title']}</a></h4>
             <div class="list">
                 <ul>
-                    <volist name="brand" id="bd">
-                        <li><a href="{:U('brand/index?id='.$bd['id'])}">{$bd['title']}</a></li>
+                    <volist name="qiangxiang" id="qx">
+                        <li><a href="{:U('/article/detail?id='.$qx['id'])}">{$qx['title']}</a></li>
+                    </volist>
+                </ul>
+            </div>
+            <h4 class="diys"><a href="{:U('/article/lists?category=5')}">{$guzhang_t['title']}</a></h4>
+            <div class="list">
+                <ul>
+                    <volist name="guzhang" id="gz">
+                        <li><a href="{:U('/article/detail?id='.$gz['id'])}">{$gz['title']}</a></li>
                     </volist>
                 </ul>
             </div>
@@ -30,14 +37,14 @@
         <div class="right">
             <h4 class="title">
                 <div class="tit">
-                    <a href="#">{$product_t['title']}</a>
+                    <a href="{:U('/article/lists?category=3')}">{$product_t['title']}</a>
                 </div>
             </h4>
             <div class="r_list">
                 <volist name="product" id="pt">
                     <dl class="">
-                        <dt><a href="#"><img src="{:get_cover($pt['cover_id'])['path']}" alt="{$pt['title']}"></a></dt>
-                        <dd><a href="#" title="{$pt['title']}">{$pt['title']}</a></dd>
+                        <dt><a href="{:U('/article/detail?id='.$pt['id'])}"><img src="{:get_cover($pt['cover_id'])['path']}" alt="{$pt['title']}"></a></dt>
+                        <dd><a href="{:U('/article/detail?id='.$pt['id'])}" title="{$pt['title']}">{$pt['title']}</a></dd>
                     </dl>
                 </volist>
                 <div class="clear"></div>
@@ -83,12 +90,12 @@
         <div class="tbe_left">
             <div class="l_tbe_head">
                 <p>
-                    <a href="#" target="_blank" title="">
-                        <img alt="" title="" src="images/more.gif">
+                    <a href="{:U('/article/lists?category=1')}" target="_blank" title="">
+                        <img alt="" title="" src="__IMG__/index/more.gif">
                     </a>
                 </p>
                 <span>
-                <a href="#" title="成功案例" target="_blank">
+                <a href="{:U('/article/lists?category=1')}" title="成功案例" target="_blank">
                     成功案例
                 </a>
             </span>
@@ -97,13 +104,13 @@
                 <volist name="case" id="cs">
                     <dl>
                         <dt>
-                            <a href="#" title="" target="_blank">
+                            <a href="{:U('/article/detail?id='.$cs['id'])}" title="" target="_blank">
                                 <img src="{:get_cover($cs['cover_id'])['path']}" alt="成功案例" title="成功案例">
                             </a>
                         </dt>
                         <dd>
                             <h4>
-                                <a href="#" title="" target="_blank">
+                                <a href="{:U('/article/detail?id='.$cs['id'])}" title="" target="_blank">
                                     {$cs['title']}
                                 </a>
                             </h4>
@@ -117,23 +124,23 @@
         <div class="dongt">
             <div class="tit">
                 <p>
-                    <a href="#" title="" target="_blank">
+                    <a href="{:U('/article/lists?category=2')}" title="" target="_blank">
                         <img src="__IMG__/index/more.gif" alt="最新动态" title="最新动态">
                     </a>
                 </p>
                 <span>
-            <a href="{:U('list/new')}" title="最新动态" target="_blank">
+            <a href="{:U('/article/lists?category=2')}" title="最新动态" target="_blank">
                 最新动态
             </a>
         </span>
             </div>
             <div class="nr">
                 <dl>
-                    <dt><a href="{:U('list/new')}" title="" target="_blank">
+                    <dt><a href="{:U('article/lists/id='.$new_first['id'])}" title="" target="_blank">
                         <img src="{:get_cover($new_first['cover_id'])['path']}" alt="最新动态" title="最新动态"></a></dt>
                     <dd>
                         <h4>
-                            <a href="{:U('article/new/id='.$new_first['id'])}" title="最新动态" target="_blank">
+                            <a href="{:U('article/lists/id='.$new_first['id'])}" title="最新动态" target="_blank">
                                 {$new_first['title']}
                             </a>
                         </h4>
@@ -143,7 +150,7 @@
                 <ul>
                     <volist name="new" id="nw">
                         <li><span class="fr">
-                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="{:U('article/new/id='.$ce['id'])}" title="" target="_blank">
+                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="{:U('article/lists/id='.$nw['id'])}" title="" target="_blank">
                             {$nw['title']}</a>
                         </li>
                     </volist>
