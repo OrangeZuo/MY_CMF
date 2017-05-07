@@ -13,11 +13,12 @@
         </div>
         <div class="l_list">
             <h4 class="tit">
-                <a href="#">最新资讯文章</a></h4>
+                <a href="{:U('/zixun')}">最新资讯文章</a></h4>
             <ul class="cont" id="cntrLastArticle">
                 <volist name="new" id="nw">
                     <li>
-                        <a href="{:U('detail?id='.$nw['id'])}" target="_blank">{$nw['title']}</a>
+                        <?php $cate_id = $nw['category_id'];?>
+                        <a href="{:U('/'.$category_id[$cate_id].'/'.$nw['id'])}" target="">{$nw['title']}</a>
                     </li>
                 </volist>
             </ul>
@@ -30,7 +31,8 @@
             <div class="right_main">
                 <volist name="list" id="lt">
                     <dl>
-                        <dd><a href="{:U('detail?id='.$lt['id'])}" target="_blank">{$lt['title']}</a></dd>
+
+                        <dd><a href="{:U('/'.$category_id[$cate_id].'/'.$lt['id'])}" target="">{$lt['title']}</a></dd>
                         <dt>{$lt['description']}</dt>
                     </dl>
                 </volist>

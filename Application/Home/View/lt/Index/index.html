@@ -115,7 +115,7 @@
             <div class="ss2" style="font-size: 12px;">
                 热门关键词: <span id="commonHeaderkeywords">
                 <volist name="keyword" id="kd">
-                    <a href="{:U('article/lists?keywords='.$kd)}" target="_parent">{$kd}</a>
+                    <a href="{:U('/sousuo/'.$kd)}" target="_parent">{$kd}</a>
                 </volist>
             </span>
             </div>
@@ -123,7 +123,7 @@
         <script>
             function xuanze(){
                 var that = document.getElementById('seachkeywords').value;
-                window.location.href="/article/lists/keywords/"+that;
+                window.location.href="/sousuo/"+that;
             }
         </script>
         <!-- 产品滚动图 start-->
@@ -163,21 +163,23 @@
                 <div class="bl_body">
                     <ul>
                         <volist name="brand" id="bd">
-                            <li><a href="{:U('brand/index?id='.$bd['id'])}">{$bd['title']}</a></li>
+                            <!--<li><a href="{:U('brand/index?id='.$bd['id'])}">{$bd['title']}</a></li>-->
+                            <li><a href="{:U('/'.$bd['name'])}">{$bd['title']}</a></li>
                         </volist>
                     </ul>
                 </div>
             </div>
             <div class="b_right">
                 <div class="br_header">
-                    <a href="javascript:void (0);" style="padding: 0;margin: 0">维修实例图</a>
+                    <a href="javascript:void (0);" style="padding: 0;margin: 0">产品展示图</a>
                 </div>
                 <div class="br_body">
                     <div class="br_content" style="padding-top: 30px;">
                         <volist name="product" id="pt">
                             <dl>
-                                <dt><a href="{:U('article/detail?id='.$pt['id'])}" target="_blank" title=""><img src="{:get_cover($pt['cover_id'])['path']}"></a></dt>
-                                <dd><a href="{:U('article/detail?id='.$pt['id'])}" target="_blank" title="">{$pt['title']}</a></dd>
+                                <?php $t = \Home\Controller\IndexController::getTitle($pt['category_id']);?>
+                                <dt><a href="{:U($t.'/'.$pt['id'])}" target="_blank" title=""><img src="{:get_cover($pt['cover_id'])['path']}"></a></dt>
+                                <dd><a href="{:U($t.'/'.$pt['id'])}" target="_blank" title="">{$pt['title']}</a></dd>
                             </dl>
                         </volist>
                     </div>
@@ -213,9 +215,9 @@
     <div class="about">
         <div class="about_head">
             <p>
-                <a href="{:U('article/detail?id='.$about_art['id'])}" title="{$about_art['title']}"><img alt="{$about_art['title']}" title="{$about_art['title']}" src="__IMG__/index/more.gif"></a>
+                <a href="{:U('/guanyuwomen')}" title="{$about_art['title']}"><img alt="{$about_art['title']}" title="{$about_art['title']}" src="__IMG__/index/more.gif"></a>
             </p>
-            <a href="{:U('article/detail?id='.$about_art['id'])}" target="_blank">{$about_art['title']}</a>
+            <a href="{:U('/guanyuwomen')}" target="_blank">{$about_art['title']}</a>
         </div>
         <div class="about_body">
             <div class="about_cont">
@@ -308,27 +310,28 @@
         <div class="tbe_left">
             <div class="l_tbe_head">
                 <p>
-                    <a href="{:U('article/lists?category=1')}" target="_blank" title="">
+                    <a href="{:U('/anli/')}" target="_blank" title="">
                         <img alt="" title="" src="__IMG__/index/more.gif">
                     </a>
                 </p>
                 <span>
-                <a href="{:U('article/lists?category=1')}" title="成功案例" target="_blank">
+                <a href="{:U('/anli/')}" title="成功案例" target="_blank">
                     成功案例
                 </a>
             </span>
             </div>
             <div class="l_tbe_body">
                 <volist name="case" id="cs">
+                    <?php $t = \Home\Controller\IndexController::getTitle($cs['category_id']);?>
                     <dl>
                         <dt>
-                            <a href="{:U('article/detail/?id='.$cs['id'])}" title="" target="_blank">
+                            <a href="{:U($t.'/'.$cs['id'])}" title="" target="_blank">
                                 <img src="{:get_cover($cs['cover_id'])['path']}" alt="成功案例" title="成功案例">
                             </a>
                         </dt>
                         <dd>
                             <h4>
-                                <a href="{:U('article/detail?id='.$cs['id'])}" title="" target="_blank">
+                                <a href="{:U($t.'/'.$cs['id'])}" title="" target="_blank">
                                     {$cs['title']}
                                 </a>
                             </h4>
@@ -341,12 +344,12 @@
         <div class="tbe_right">
             <div class="tit">
                 <p>
-                    <a href="#" target="_blank" title="">
+                    <a href="{:U('/changjianwenti/')}" target="_blank" title="">
                         <img src="__IMG__/index/more.gif" alt="" title="">
                     </a>
                 </p>
                 <span>
-                    <a href="#" target="_blank" title="">
+                    <a href="{:U('/changjianwenti/')}" target="_blank" title="">
                         {$problem_t['title']}
                     </a>
                 </span>
@@ -358,7 +361,7 @@
                         <td>
                             <volist name="problem" id="pl">
                                 <dl>
-                                    <dt><span>问</span><a href="{:U('artcile/detail?id='.$pl['id'])}" target="_blank">{$pl['title']}</a></dt>
+                                    <dt><span>问</span><a href="{:U('/changjianwenti/'.$pl['id'])}" target="_blank">{$pl['title']}</a></dt>
                                     <dd>
                                         <span>答</span>{$pl['description']}</dd>
                                 </dl>
@@ -387,23 +390,23 @@
         <div class="dongt">
             <div class="tit">
                 <p>
-                    <a href="#" title="" target="_blank">
+                    <a href="{:U('/zixun/')}" title="" target="_blank">
                         <img src="__IMG__/index/more.gif" alt="最新动态" title="最新动态">
                     </a>
                 </p>
                 <span>
-            <a href="{:U('article/list/new')}" title="最新动态" target="_blank">
+            <a href="{:U('/zixun/')}" title="最新动态" target="_blank">
                 最新动态
             </a>
         </span>
             </div>
             <div class="nr">
                 <dl>
-                    <dt><a href="{:U('list/new')}" title="" target="_blank">
+                    <dt><a href="{:U($t.'/'.$new_first['id'])}" title="" target="_blank">
                         <img src="{:get_cover($new_first['cover_id'])['path']}" alt="最新动态" title="最新动态"></a></dt>
                     <dd>
                         <h4>
-                            <a href="{:U('article/new/id='.$new_first['id'])}" title="最新动态" target="_blank">
+                            <a href="{:U($t.'/'.$new_first['id'])}" title="最新动态" target="_blank">
                                 {$new_first['title']}
                             </a>
                         </h4>
@@ -412,8 +415,9 @@
                 </dl>
                 <ul>
                     <volist name="new" id="nw">
+
                         <li><span class="fr">
-                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="{:U('article/new/id='.$ce['id'])}" title="" target="_blank">
+                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="{:U('/'.$t.'/'.$nw['id'])}" title="" target="_blank">
                             {$nw['title']}</a>
                         </li>
                     </volist>
@@ -426,29 +430,79 @@
         <!--动态over-->
         <!--建议 start-->
         <div class="xiad">
-            <p>
-                <img src="__IMG__/index/logo.png" height="48" alt=""></p>
-            <div class="biao">
-                <ul id="oran_table_1">
-                    <li><span>姓名：</span><input id="txt_name" class="k2" type="text">*</li>
-                    <li><span>电话：</span><input id="txt_tel" class="k2" type="text">*</li>
-                    <li><span>详细地址：</span><input id="txt_add" class="k2" type="text">*</li>
-                    <li><span>邮箱：</span><input id="txt_mail" class="k2" type="text">*</li>
-                    <li><span>信息备注：</span><textarea id="txt_information" type="text" class="k3"></textarea>*</li>
-                    <li><span>验证码：</span><input id="txt_validate" class="k4" type="text">*<img style="vertical-align: middle;
-                cursor: pointer; padding: 0 10px;" src="#" title="点击刷新" alt="点击刷新" onclick="this.src='#'+new Date().getTime()"><a title="点击刷新" href="javascript:void(0);">换一张</a></li>
-                </ul>
-                <div class="anniu1">
-                    <a href="javascript:void(0);" onclick="IndexAddAgentDetail(this)">
-                        <img src="__IMG__/index/btn2.gif" alt=""></a><a href="javascript:void(0);" onclick="emptyText('oran_table_1')"><img src="__IMG__/index/btn3.gif" alt=""></a></div>
-            </div>
+            <form id="message" action="index/upMessage">
+                <p>
+                    <img src="__IMG__/index/logo.png" height="48" alt=""></p>
+                <div class="biao">
+                    <ul id="oran_table_1">
+                        <li><span>姓名：</span><input id="txt_name" class="k2" type="text">*</li>
+                        <li><span>电话：</span><input id="txt_tel" class="k2" type="text">*</li>
+                        <li><span>详细地址：</span><input id="txt_add" class="k2" type="text">*</li>
+                        <li><span>邮箱：</span><input id="txt_mail" class="k2" type="text">*</li>
+                        <li><span>信息备注：</span><textarea id="txt_information" type="text" class="k3"></textarea>*</li>
+                        <li><span>验证码：</span><input id="txt_validate" class="k4" type="text">*<img style="vertical-align: middle;
+                cursor: pointer; padding: 0 10px;" src="{:U('/Index/verify_c',array())}" title="点击刷新" alt="点击刷新" ><a title="点击刷新" href="javascript:void (0);">换一张</a></li>
+                    </ul>
+                    <div class="anniu1">
+                        <a href="javascript:void(0);" onclick="IndexAddAgentDetail()"> <img src="__IMG__/index/btn2.gif" alt=""></a>
+                    </div>
+                </div>
+            </form>
+
         </div>
         <script type="text/javascript">
-            $(function() {
-                $("#oran_table_1").find("a[title='点击刷新']").click(function() {
-                    $(this).siblings("img").attr("src", "/Tools/ValidCodes.aspx?" + new Date().getTime());
-                });
+            var captcha_img = $('#oran_table_1').find('img');
+            var captcha_a   = $('#oran_table_1').find('a');
+            var verifyimg = captcha_img.attr("src");
+            captcha_img.attr('title', '点击刷新');
+            captcha_img.click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(captcha_img).attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(captcha_img).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
             });
+            captcha_a.click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(captcha_img).attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(captcha_img).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+
+            function IndexAddAgentDetail(){
+                var txt_name = $('#txt_name').val();
+                var txt_tel = $('#txt_tel').val();
+                var txt_add = $('#txt_add').val();
+                var txt_mail = $('#txt_mail').val();
+                var txt_information = $('#txt_information').val();
+                var code = $('#txt_validate').val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/Index/upMessage",
+                    data: {name:txt_name, tel:txt_tel, add:txt_add, mail:txt_mail, information:txt_information, code:code},
+                    dataType: "json",
+                    success: function(data){
+                        alert(data);
+                        if(data == 0){
+                            alert("验证码错误");
+                        }else if(data == 1){
+                            alert("提交成功");
+                            return false;
+                        }else {
+                            alert("提交失败");
+                            return true;
+                        }
+                    }
+                });
+
+            }
+//            $(function() {
+//                $("#oran_table_1").find("a[title='点击刷新']").click(function() {
+//                    $(this).siblings("img").attr("src", "/Tools/ValidCodes.aspx?" + new Date().getTime());
+//                });
+//            });
         </script>
         <!--建议 over-->
     </div>

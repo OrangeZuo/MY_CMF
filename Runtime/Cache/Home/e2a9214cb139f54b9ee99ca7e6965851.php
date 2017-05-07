@@ -3,21 +3,22 @@
 <head>
 	<html>
 <meta charset="UTF-8">
-<title><?php echo C('WEB_SITE_TITLE');?></title>
-<meta name="author" content="YFCMF">
 <meta charset="utf-8">
+<title><?php echo C('WEB_SITE_TITLE');?></title>
+<meta name="keywords" content="<?php echo C('WEB_SITE_KEYWORD');?>" />
+<meta name="description" content="<?php echo C('WEB_SITE_DESCRIPTION');?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp"/>
-<script src="/MY_CMF/Public/Home/js/banner.js" type="text/javascript"></script>
+<script src="/Public/Home/js/banner.js" type="text/javascript"></script>
 <script type="text/javascript">SKIN_PATH = "/Skins/default/";</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="/MY_CMF/Public/Home/js/JQuery.js"></script>
-<script type="text/javascript" src="/MY_CMF/Public/Home/js/gotop.js"></script>
-<link href="/MY_CMF/Public/Home/css/head.css" rel="stylesheet" type="text/css" />
-<link href="/MY_CMF/Public/Home/css/foot.css" rel="stylesheet" type="text/css" />
-<link href="/MY_CMF/Public/Home/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Public/Home/js/JQuery.js"></script>
+<script type="text/javascript" src="/Public/Home/js/gotop.js"></script>
+<link href="/Public/Home/css/head.css" rel="stylesheet" type="text/css" />
+<link href="/Public/Home/css/foot.css" rel="stylesheet" type="text/css" />
+<link href="/Public/Home/css/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<!-- 头部 -->
@@ -26,26 +27,22 @@
     <div class="top">
         <!-- logo -->
         <div class="logo">
-            <a href="#">
-                <img src="/MY_CMF/Public/Home/images/index/logo.png">
+            <a href="<?php echo ($logo['link']); ?>">
+                <img src="<?php echo get_cover($logo['cover_id'])['path'];?>" width="200" height="100">
             </a>
         </div>
         <!-- 标题 -->
         <div class="title">
-            <img src="/MY_CMF/Public/Home/images/index/title.png">
+                <img src="<?php echo get_cover($title['cover_id'])['path'];?>" width="400" height="100">
         </div>
         <!-- 其他 -->
         <div class="other">
-            <ul>
-                <li>
-                    <img src="{}">
-                </li>
-            </ul>
+            <img src="<?php echo get_cover($tel['cover_id'])['path'];?>" width="200" height="100">
         </div>
     </div>
     <div class="nav">
         <ul>
-            <?php if(is_array($nav)): $i = 0; $__LIST__ = $nav;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i;?><li class=""><a title="" href="./<?php echo ($data["name"]); ?>"><span><?php echo ($data["title"]); ?></span></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
+            <?php if(is_array($nav)): $k = 0; $__LIST__ = $nav;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($k % 2 );++$k;?><li <?php if(stristr($_SERVER['REQUEST_URI'],$data['url']) || $data['url'] == null || ($data['url'] == 'Index/index' && $_SERVER['REQUEST_URI'] == '/')): ?> class="cur" <?php endif; ?>><a title="" href="<?php echo U($data['url']);?>"><span><?php echo ($data["title"]); ?></span></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
 
         </ul>
     </div>
@@ -59,15 +56,11 @@
 	
     <div id="focus" class="banners" style="position: relative; visibility:hidden;">
         <div id="au" style="visibility:hidden;">
-            <div style='display: block'>
-                <a href="#" target="_blank">
-                    <img src="/MY_CMF/Public/Home/images/index/banner1.jpg" width="100%" height="100%" alt="" /></a></div>
-            <div style='display: none'>
-                <a href="#" target="_blank">
-                    <img src="/MY_CMF/Public/Home/images/index/banner2.jpg" width="100%" height="100%" alt="" /></a></div>
-            <div style='display: none'>
-                <a href="#" target="_blank">
-                    <img src="/MY_CMF/Public/Home/images/index/banner3.jpg" width="100%" height="100%" alt="" /></a></div>
+            <?php if(is_array($banner)): $k = 0; $__LIST__ = $banner;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$b): $mod = ($k % 2 );++$k;?><div <?php if ($k != 1): ?> style="display: none" <?php endif; ?>>
+                    <a href="javascript:void (0);">
+                        <img src="<?php echo get_cover($b['cover_id'])['path'];?>" width="1439" height="463" alt="<?php echo ($b['title']); ?>" />
+                    </a>
+                </div><?php endforeach; endif; else: echo "" ;endif; ?>
             <div id="no" style="display: none">
             </div>
             <div class="lunbo">
@@ -163,30 +156,32 @@
     <!-- banner over-->
     <!--主体内容 开始-->
     <div class="content">
+        <div class="search">
+            <div class="ss1 fl">
+                <input name="" id="seachkeywords" type="text" class="k1" value="请输入关键词" onclick="this.value = '';" onblur="if(this.value == ''){this.value='请输入关键词'}">
+                <input name="" type="image" onclick="xuanze();" src="/Public/Home/images/Index/btn1.gif"></div>
+            <div class="ss2" style="font-size: 12px;">
+                热门关键词: <span id="commonHeaderkeywords">
+                <?php if(is_array($keyword)): $i = 0; $__LIST__ = $keyword;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$kd): $mod = ($i % 2 );++$i;?><a href="<?php echo U('/sousuo/'.$kd);?>" target="_parent"><?php echo ($kd); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
+            </span>
+            </div>
+        </div>
+        <script>
+            function xuanze(){
+                var that = document.getElementById('seachkeywords').value;
+                window.location.href="/sousuo/"+that;
+            }
+        </script>
         <!-- 产品滚动图 start-->
         <div id="brand" class="brand mt12">
             <div class="jiao1 fl" style="padding-right:10px;" id="LeftIDhz">
                 <a href="javascript:void(0);">
-                    <img src="/MY_CMF/Public/Home/images/index/jiao1.gif" alt="">
+                    <img src="/Public/Home/images/index/jiao1.gif" alt="">
                 </a></div>
             <div id="ScollNamehz" style="float: left;">
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
-                <li><a target="_blank" href="#" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="" width="145" height="49"/></a></li>
+                <?php if(is_array($run_small)): $i = 0; $__LIST__ = $run_small;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$small): $mod = ($i % 2 );++$i;?><li><a href="javascript:void (0);" title="<?php echo ($small['title']); ?>"><img src="<?php echo get_cover($small['cover_id'])['path'];?>" alt="<?php echo ($small['description']); ?>" title="<?php echo ($small['title']); ?>" width="145" height="49"/></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
-            <div class="jiao1 fr" id="RightIDhz"><a href="javascript:void(0);"> <img src="/MY_CMF/Public/Home/images/index/jiao2.gif" alt=""></a></div>
+            <div class="jiao1 fr" id="RightIDhz"><a href="javascript:void(0);"> <img src="/Public/Home/images/index/jiao2.gif" alt=""></a></div>
         </div>
         <script language="javascript" type="text/javascript">
             var adshz = new ScrollPicleft();
@@ -207,18 +202,12 @@
         <div class="brand_show">
             <div class="b_left">
                 <div class="bl_header">
-                    <a href="#" target="_blank">挖机分类</a>
+                    <a href="javascript:void (0);"><?php echo ($brandTitle['title']); ?></a>
                 </div>
                 <div class="bl_body">
                     <ul>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机222222222222</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机333</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
-                        <li><a href="#">龙腾挖机</a></li>
+                        <?php if(is_array($brand)): $i = 0; $__LIST__ = $brand;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$bd): $mod = ($i % 2 );++$i;?><!--<li><a href="<?php echo U('brand/index?id='.$bd['id']);?>"><?php echo ($bd['title']); ?></a></li>-->
+                            <li><a href="<?php echo U('/'.$bd['name']);?>"><?php echo ($bd['title']); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
                     </ul>
                 </div>
             </div>
@@ -228,30 +217,11 @@
                 </div>
                 <div class="br_body">
                     <div class="br_content" style="padding-top: 30px;">
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png"></a></dt>
-                            <dd><a href="#" target="_blank" title="">龙腾挖机</a></dd>
-                        </dl>
+                        <?php if(is_array($product)): $i = 0; $__LIST__ = $product;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pt): $mod = ($i % 2 );++$i;?><dl>
+                                <?php $t = \Home\Controller\IndexController::getTitle($pt['category_id']);?>
+                                <dt><a href="<?php echo U($t.'/'.$pt['id']);?>" target="_blank" title=""><img src="<?php echo get_cover($pt['cover_id'])['path'];?>"></a></dt>
+                                <dd><a href="<?php echo U($t.'/'.$pt['id']);?>" target="_blank" title=""><?php echo ($pt['title']); ?></a></dd>
+                            </dl><?php endforeach; endif; else: echo "" ;endif; ?>
                     </div>
                 </div>
             </div>
@@ -260,62 +230,22 @@
 
         <!--pic_show start-->
         <div class="pic_show" style="margin-top: 20px;">
-            <img src="/MY_CMF/Public/Home/images/index/pic.jpg" width="100%" height="100%" style="padding: 0;margin: 0;">
+            <img src="<?php echo get_cover($advertise1['cover_id'])['path'];?>" width="100%" height="130" style="padding: 0;margin: 0;">
         </div>
         <!--pic_show over-->
     </div>
     <!--主体内容 结束-->
     <!--message start-->
-    <div class="message_pic" style="background: url('/MY_CMF/Public/Home/images/index/message.jpg');height: 1206px;width:100%" >
+    <div class="message_pic" style="background: url('<?php echo($back);?>')no-repeat;height: 1206px;width:100%" >
         <div class="message">
-            <dl class="msg1 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg2 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg3 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg4 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg5 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
-            <dl class="msg6 msg">
-                <dt>
-                    <a href="#" target="_blank" title="">这是标题</a>
-                </dt>
-                <dd>
-                    <a href="#"  target="_blank" title="">这是内容111111111</a>
-                </dd>
-            </dl>
+            <?php if(is_array($introduce)): $k = 0; $__LIST__ = $introduce;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ite): $mod = ($k % 2 );++$k;?><dl class="msg<?php echo ($k); ?> msg">
+                    <!--<dt>-->
+                    <!--<a href="#" target="_blank" title="">这是标题</a>-->
+                    <!--</dt>-->
+                    <dd>
+                        <a href="javascript: void (0);"><?php echo ($ite['content']); ?></a>
+                    </dd>
+                </dl><?php endforeach; endif; else: echo "" ;endif; ?>
         </div>
     </div>
     <!--message over-->
@@ -323,30 +253,27 @@
     <div class="about">
         <div class="about_head">
             <p>
-                <a href="#" title=""><img alt="" title="" src="/MY_CMF/Public/Home/images/index/more.gif"></a>
+                <a href="<?php echo U('/guanyuwomen');?>" title="<?php echo ($about_art['title']); ?>"><img alt="<?php echo ($about_art['title']); ?>" title="<?php echo ($about_art['title']); ?>" src="/Public/Home/images/index/more.gif"></a>
             </p>
-            <a href="#" target="_blank">关于龙腾</a>
+            <a href="<?php echo U('/guanyuwomen');?>" target="_blank"><?php echo ($about_art['title']); ?></a>
         </div>
         <div class="about_body">
             <div class="about_cont">
-                龙腾介绍龙腾介绍龙腾介绍龙腾介绍龙腾介绍龙腾介绍
+                <?php echo ($about_art['description']); ?>
             </div>
             <div class="about_pic">
                 <div class="l_about_pic">
-                    <a href="#" title="" target="_blank">
-                        <img src="/MY_CMF/Public/Home/images/index/logo.png">
+                    <a href="javascript:void (0);" title="" target="_blank">
+                        <img src="<?php echo get_cover($about_pic_b['cover_id'])['path'];?>" alt="<?php echo ($about_pic_b['description']); ?>">
                     </a>
                 </div>
                 <div class="r_about_pic">
                     <ul>
-                        <li><a href="#" target="_blank">
-                            <img src="/MY_CMF/Public/Home/images/index/logo.png" alt=""></a></li>
-                        <li><a href="#" target="_blank">
-                            <img src="/MY_CMF/Public/Home/images/index/logo.png" alt=""></a></li>
-                        <li><a href="#" target="_blank">
-                            <img src="/MY_CMF/Public/Home/images/index/logo.png" alt=""></a></li>
-                        <li><a href="#" target="_blank">
-                            <img src="/MY_CMF/Public/Home/images/index/logo.png" alt=""></a></li>
+                        <?php if(is_array($about_pic_s)): $i = 0; $__LIST__ = $about_pic_s;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ap): $mod = ($i % 2 );++$i;?><li>
+                                <a href="javascript:void (0);" target="_blank">
+                                    <img src="<?php echo get_cover($ap['cover_id'])['path'];?>" alt="<?php echo ($ap['description']); ?>">
+                                </a>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
                     </ul>
                 </div>
             </div>
@@ -356,22 +283,20 @@
     <!--case start-->
     <div class="case">
         <div class="t_img">
-            <a href="#"><img src="/MY_CMF/Public/Home/images/index/qq.jpg" alt="" title=""></a>
+            <a href="javascript:void(0);"><img src="<?php echo get_cover($promise_pic_s['cover_id'])['path'];?>" height="130" width="100%"></a>
         </div>
         <div class="c_cont">
             <p>
-                <img src="/MY_CMF/Public/Home/images/index/img13.jpg" alt=""></p>
+                <img src="<?php echo get_cover($promise_pic['cover_id'])['path'];?>" alt=""></p>
             <ul>
-                <li class="lis01">内容内容内容内容内容内容</li>
-                <li class="lis02">内容内容内容内容内容内容内容内容</li>
-                <li class="lis03">内容内容内容内容内容内容内容内容</li>
+                <?php if(is_array($promise)): $k = 0; $__LIST__ = $promise;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pe): $mod = ($k % 2 );++$k;?><li class="lis0<?php echo ($k); ?>"><?php echo ($pe['description']); ?></li><?php endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
     </div>
     <!--case over-->
     <!--pic_show start-->
     <div class="pic_show2" style="margin: 20px auto;width: 960px;">
-        <img src="/MY_CMF/Public/Home/images/index/pic.jpg" width="100%" height="100%" style="padding: 0;margin: 0;">
+        <img src="<?php echo get_cover($advertise2['cover_id'])['path'];?>" width="100%" height="130" style="padding: 0;margin: 0;">
     </div>
     <!--pic_show over-->
     <!--滚动2 start-->
@@ -379,42 +304,20 @@
     <div class="run_pic">
         <div class="tit">
             <p>
-                <a href="#" title="" target="_blank">
-                    <img src="/MY_CMF/Public/Home/images/index/more.gif" alt="" title="" >
+                <a href="javascript: void (0);" title="<?php echo ($run_big_t['title']); ?>">
+                    <img src="/Public/Home/images/index/more.gif">
                 </a>
             </p>
             <span>
-            <a href="" title="" target="_blank">龙腾挖机</a>
+            <a href="javascript: void (0);"><?php echo ($run_big_t['title']); ?></a>
         </span>
         </div>
         <ul id="ScollNamedls" style="float: left; position: absolute; overflow: hidden;">
             <div style="float: left;overflow: hidden">
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机1</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机2</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机3</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机4</a></span>
-                </li>
+                <?php if(is_array($run_big)): $i = 0; $__LIST__ = $run_big;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big): $mod = ($i % 2 );++$i;?><li><a target="_blank" href="<?php echo ($big['link']); ?>" title="<?php echo ($big['title']); ?>"><img src="<?php echo get_cover($big['cover_id'])['path'];?>" alt="<?php echo ($big['description']); ?>" title="<?php echo ($big['title']); ?>" width="223" height="124"/></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
             <div style="float: left; overflow: hidden">
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机5</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机6</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机7</a></span>
-                </li>
-                <li><a target="_blank" href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/run.jpg" alt="" title="" ></a><span><a target="_blank" href="#" title="">龙腾挖机8</a></span>
-                </li>
+                <?php if(is_array($run_big)): $i = 0; $__LIST__ = $run_big;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big): $mod = ($i % 2 );++$i;?><li><a target="_blank" href="<?php echo ($big['link']); ?>" title="<?php echo ($big['title']); ?>"><img src="<?php echo get_cover($big['cover_id'])['path'];?>" alt="<?php echo ($big['description']); ?>" title="<?php echo ($big['title']); ?>" width="223" height="124"/></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
         </ul>
     </div>
@@ -437,56 +340,45 @@
         <div class="tbe_left">
             <div class="l_tbe_head">
                 <p>
-                    <a href="#" target="_blank" title="">
-                        <img alt="" title="" src="/MY_CMF/Public/Home/images/index/more.gif">
+                    <a href="<?php echo U('/anli/');?>" target="_blank" title="">
+                        <img alt="" title="" src="/Public/Home/images/index/more.gif">
                     </a>
                 </p>
                 <span>
-                <a href="#" title="成功案例" target="_blank">
+                <a href="<?php echo U('/anli/');?>" title="成功案例" target="_blank">
                     成功案例
                 </a>
             </span>
             </div>
             <div class="l_tbe_body">
-                <dl>
-                    <dt><a href="#" title="" target="_blank">
-                        <img src="/MY_CMF/Public/Home/images/index/logo.png" alt="!" title=""></a></dt>
-                    <dd>
-                        <h4>
-                            <a href="#" title="!" target="_blank">
-                                成功修理案例1
+                <?php if(is_array($case)): $i = 0; $__LIST__ = $case;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cs): $mod = ($i % 2 );++$i; $t = \Home\Controller\IndexController::getTitle($cs['category_id']);?>
+                    <dl>
+                        <dt>
+                            <a href="<?php echo U($t.'/'.$cs['id']);?>" title="" target="_blank">
+                                <img src="<?php echo get_cover($cs['cover_id'])['path'];?>" alt="成功案例" title="成功案例">
                             </a>
-                        </h4>
-                        成功修理案例1
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>
-                        <a href="#" title="!" target="_blank">
-                            <img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title="">
-                        </a>
-                    </dt>
-                    <dd>
-                        <h4>
-                            <a href="#" title="" target="_blank">
-                                成功修理案例2
-                            </a>
-                        </h4>
-                        成功修理案例1成功修理案例1成功修理案例1
-                    </dd>
-                </dl>
+                        </dt>
+                        <dd>
+                            <h4>
+                                <a href="<?php echo U($t.'/'.$cs['id']);?>" title="" target="_blank">
+                                    <?php echo ($cs['title']); ?>
+                                </a>
+                            </h4>
+                            <?php echo ($cs['description']); ?>
+                        </dd>
+                    </dl><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
         </div>
         <div class="tbe_right">
             <div class="tit">
                 <p>
-                    <a href="#" target="_blank" title="">
-                        <img src="/MY_CMF/Public/Home/images/index/more.gif" alt="" title="">
+                    <a href="<?php echo U('/changjianwenti/');?>" target="_blank" title="">
+                        <img src="/Public/Home/images/index/more.gif" alt="" title="">
                     </a>
                 </p>
                 <span>
-                    <a href="#" target="_blank" title="">
-                        常见问题
+                    <a href="<?php echo U('/changjianwenti/');?>" target="_blank" title="">
+                        <?php echo ($problem_t['title']); ?>
                     </a>
                 </span>
             </div>
@@ -495,84 +387,11 @@
                     <tbody>
                     <tr>
                         <td>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题1?</a></dt>
-                                <dd>
-                                    <span>答</span>回答1</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题2</a></dt>
-                                <dd>
-                                    <span>答</span>回答2</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题3</a></dt>
-                                <dd>
-                                    <span>答</span>回答3</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题4</a></dt>
-                                <dd>
-                                    <span>答</span>回答4</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题5</a></dt>
-                                <dd>
-                                    <span>答</span>回答5</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题6</a></dt>
-                                <dd>
-                                    <span>答</span>回答6</dd>
-                            </dl>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题1?</a></dt>
-                                <dd>
-                                    <span>答</span>回答1</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题2</a></dt>
-                                <dd>
-                                    <span>答</span>回答2</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题3</a></dt>
-                                <dd>
-                                    <span>答</span>回答3</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题4</a></dt>
-                                <dd>
-                                    <span>答</span>回答4</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="#" title="" target="_blank">问题5</a></dt>
-                                <dd>
-                                    <span>答</span>回答5</dd>
-                            </dl>
-
-                            <dl>
-                                <dt><span>问</span><a href="" title="" target="_blank">问题6</a></dt>
-                                <dd>
-                                    <span>答</span>回答6</dd>
-                            </dl>
-
+                            <?php if(is_array($problem)): $i = 0; $__LIST__ = $problem;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pl): $mod = ($i % 2 );++$i;?><dl>
+                                    <dt><span>问</span><a href="<?php echo U('/changjianwenti/'.$pl['id']);?>" target="_blank"><?php echo ($pl['title']); ?></a></dt>
+                                    <dd>
+                                        <span>答</span><?php echo ($pl['description']); ?></dd>
+                                </dl><?php endforeach; endif; else: echo "" ;endif; ?>
                         </td>
                     </tr>
                     </tbody>
@@ -589,7 +408,7 @@
     <!--success over-->
     <!--pic_show start-->
     <div class="pic_show3" style="margin: 20px auto;width: 960px;">
-        <img src="/MY_CMF/Public/Home/images/index/pic.jpg" width="100%" height="100%" style="padding: 0;margin: 0;">
+        <img src="<?php echo get_cover($advertise3['cover_id'])['path'];?>" width="100%" height="130" style="padding: 0;margin: 0;">
     </div>
     <!--pic_show over-->
     <div style="width: 960px;margin: auto">
@@ -597,46 +416,34 @@
         <div class="dongt">
             <div class="tit">
                 <p>
-                    <a href="#" title="" target="_blank">
-                        <img src="/MY_CMF/Public/Home/images/index/more.gif" alt="" title="">
+                    <a href="<?php echo U('/zixun/');?>" title="" target="_blank">
+                        <img src="/Public/Home/images/index/more.gif" alt="最新动态" title="最新动态">
                     </a>
                 </p>
                 <span>
-            <a href="#" title="" target="_blank">
+            <a href="<?php echo U('/zixun/');?>" title="最新动态" target="_blank">
                 最新动态
             </a>
         </span>
             </div>
             <div class="nr">
                 <dl>
-                    <dt><a href="#" title="" target="_blank">
-                        <img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" title=""></a></dt>
+                    <dt><a href="<?php echo U($t.'/'.$new_first['id']);?>" title="" target="_blank">
+                        <img src="<?php echo get_cover($new_first['cover_id'])['path'];?>" alt="最新动态" title="最新动态"></a></dt>
                     <dd>
                         <h4>
-                            <a href="#" title="" target="_blank">
-                                动态动态
+                            <a href="<?php echo U($t.'/'.$new_first['id']);?>" title="最新动态" target="_blank">
+                                <?php echo ($new_first['title']); ?>
                             </a>
                         </h4>
-                        内容内容
+                        <?php echo ($new_first['title']); ?>
                     </dd>
                 </dl>
                 <ul>
-                    <li><span class="fr">
-                        2016-07-15</span><a href="#" title="" target="_blank">
-                        标题1</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-05</span><a href="#" title="" target="_blank">
-                        标题2</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-02</span><a href="#" title="" target="_blank">
-                        标题23</a>
-                    </li>
-                    <li><span class="fr">
-                        2016-07-01</span><a href="#" title="" target="_blank">
-                        标题4</a>
-                    </li>
+                    <?php if(is_array($new)): $i = 0; $__LIST__ = $new;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$nw): $mod = ($i % 2 );++$i;?><li><span class="fr">
+                        <?php echo(date('Y-m-d',$nw['update_time']))?></span><a href="<?php echo U('/'.$t.'/'.$nw['id']);?>" title="" target="_blank">
+                            <?php echo ($nw['title']); ?></a>
+                        </li><?php endforeach; endif; else: echo "" ;endif; ?>
                 </ul>
             </div>
         </div>
@@ -646,29 +453,79 @@
         <!--动态over-->
         <!--建议 start-->
         <div class="xiad">
-            <p>
-                <img src="/MY_CMF/Public/Home/images/index/logo.png" height="48" alt=""></p>
-            <div class="biao">
-                <ul id="oran_table_1">
-                    <li><span>姓名：</span><input id="txt_name" class="k2" type="text">*</li>
-                    <li><span>电话：</span><input id="txt_tel" class="k2" type="text">*</li>
-                    <li><span>详细地址：</span><input id="txt_add" class="k2" type="text">*</li>
-                    <li><span>邮箱：</span><input id="txt_mail" class="k2" type="text">*</li>
-                    <li><span>信息备注：</span><textarea id="txt_information" type="text" class="k3"></textarea>*</li>
-                    <li><span>验证码：</span><input id="txt_validate" class="k4" type="text">*<img style="vertical-align: middle;
-                cursor: pointer; padding: 0 10px;" src="#" title="点击刷新" alt="点击刷新" onclick="this.src='#'+new Date().getTime()"><a title="点击刷新" href="javascript:void(0);">换一张</a></li>
-                </ul>
-                <div class="anniu1">
-                    <a href="javascript:void(0);" onclick="IndexAddAgentDetail(this)">
-                        <img src="/MY_CMF/Public/Home/images/index/btn2.gif" alt=""></a><a href="javascript:void(0);" onclick="emptyText('oran_table_1')"><img src="/MY_CMF/Public/Home/images/index/btn3.gif" alt=""></a></div>
-            </div>
+            <form id="message" action="index/upMessage">
+                <p>
+                    <img src="/Public/Home/images/index/logo.png" height="48" alt=""></p>
+                <div class="biao">
+                    <ul id="oran_table_1">
+                        <li><span>姓名：</span><input id="txt_name" class="k2" type="text">*</li>
+                        <li><span>电话：</span><input id="txt_tel" class="k2" type="text">*</li>
+                        <li><span>详细地址：</span><input id="txt_add" class="k2" type="text">*</li>
+                        <li><span>邮箱：</span><input id="txt_mail" class="k2" type="text">*</li>
+                        <li><span>信息备注：</span><textarea id="txt_information" type="text" class="k3"></textarea>*</li>
+                        <li><span>验证码：</span><input id="txt_validate" class="k4" type="text">*<img style="vertical-align: middle;
+                cursor: pointer; padding: 0 10px;" src="<?php echo U('/Index/verify_c',array());?>" title="点击刷新" alt="点击刷新" ><a title="点击刷新" href="javascript:void (0);">换一张</a></li>
+                    </ul>
+                    <div class="anniu1">
+                        <a href="javascript:void(0);" onclick="IndexAddAgentDetail()"> <img src="/Public/Home/images/index/btn2.gif" alt=""></a>
+                    </div>
+                </div>
+            </form>
+
         </div>
         <script type="text/javascript">
-            $(function() {
-                $("#oran_table_1").find("a[title='点击刷新']").click(function() {
-                    $(this).siblings("img").attr("src", "/Tools/ValidCodes.aspx?" + new Date().getTime());
-                });
+            var captcha_img = $('#oran_table_1').find('img');
+            var captcha_a   = $('#oran_table_1').find('a');
+            var verifyimg = captcha_img.attr("src");
+            captcha_img.attr('title', '点击刷新');
+            captcha_img.click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(captcha_img).attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(captcha_img).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
             });
+            captcha_a.click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(captcha_img).attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(captcha_img).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+
+            function IndexAddAgentDetail(){
+                var txt_name = $('#txt_name').val();
+                var txt_tel = $('#txt_tel').val();
+                var txt_add = $('#txt_add').val();
+                var txt_mail = $('#txt_mail').val();
+                var txt_information = $('#txt_information').val();
+                var code = $('#txt_validate').val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/Index/upMessage",
+                    data: {name:txt_name, tel:txt_tel, add:txt_add, mail:txt_mail, information:txt_information, code:code},
+                    dataType: "json",
+                    success: function(data){
+                        alert(data);
+                        if(data == 0){
+                            alert("验证码错误");
+                        }else if(data == 1){
+                            alert("提交成功");
+                            return false;
+                        }else {
+                            alert("提交失败");
+                            return true;
+                        }
+                    }
+                });
+
+            }
+//            $(function() {
+//                $("#oran_table_1").find("a[title='点击刷新']").click(function() {
+//                    $(this).siblings("img").attr("src", "/Tools/ValidCodes.aspx?" + new Date().getTime());
+//                });
+//            });
         </script>
         <!--建议 over-->
     </div>
@@ -678,7 +535,7 @@
         <div class="bis03">
             <div class="aa1">
                 <a href="javascript:void(0)" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" ></a><a href="javascript:void(0)" title=""><img src="/MY_CMF/Public/Home/images/index/logo.png" alt=""></a></div>
+                    <img src="/Public/Home/images/index/logo.png" alt="" ></a><a href="javascript:void(0)" title=""><img src="/Public/Home/images/index/logo.png" alt=""></a></div>
             <div class="link">
                 <a href="#" title="" target="_blank">
                     百度</a>
@@ -696,16 +553,16 @@
             </div>
             <div class="aa2">
                 <a href="#" title="">
-                    <img src="/MY_CMF/Public/Home/images/index/logo.png" alt="" ></a><p>
-                招商热线<span>40000000</span></p>
+                    <img src="/Public/Home/images/index/logo.png" alt="" ></a><p>
+                维修热线<span><?php echo ($about['tel']); ?></span></p>
             </div>
         </div>
     </div>
     <div class="clear"></div>
     <!--link over-->
     <!--foot start-->
-    <script type="text/javascript" src="/MY_CMF/Public/Home/js/rollup.min.js"></script>
-    <script type="text/javascript" src="/MY_CMF/Public/Home/js/JQuery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/Public/Home/js/rollup.min.js"></script>
+    <script type="text/javascript" src="/Public/Home/js/JQuery-1.3.2.min.js"></script>
     <div id="roll" style="display: block;"><div title="回到顶部" id="roll_top"></div></div>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -739,9 +596,9 @@
 <div class="footers">
     <div class="footer">
         <div class="foot_menu">
-            <a title="" href="#">修理挖机</a><a title="" href="#">挖机修理</a><a title="" href="#">修挖机里</a><a title="" href="#">瓦力秀吉</a><a title="" href="">联系我们</a><a title="网站地图" href="">网站地图</a><a title="其他" href="">其他</a></div>
+            <?php if(is_array($nav_foot)): $i = 0; $__LIST__ = $nav_foot;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$n_t): $mod = ($i % 2 );++$i;?><a title="<?php echo ($n_t['title']); ?>" href="<?php echo ($n_t['url']); ?>"><?php echo ($n_t['title']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
         <div class="wenz1">
-            龙腾挖机 版权所有 备案号：<a href="#" target="_blank">渝ICP备20170909009号-1</a>
+            龙腾挖机 版权所有 备案号：<a href="#" target="_blank"><?php echo C('WEB_SITE_ICP');?></a>
             <script src="#" language="JavaScript"></script>
             <script src="#" charset="utf-8" type="text/javascript"></script>
             <a href="#" target="_blank" title="站长统计"><img src="http://icon.cnzz.com/img/pic1.gif" vspace="0" hspace="0" border="0"></a>
@@ -749,23 +606,22 @@
             <!--var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");-->
             <!--document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2c3510c5f224bff89ae4f8ed00436092' type='text/javascript'%3E%3C/script%3E"));-->
             <!--</script><script src="#" type="text/javascript"></script>-->
-            <a href="#" target="_blank">
-                <img src="http://eiv.baidu.com/hmt/icon/21.gif" height="20" border="0" width="20"></a>
+            <!--<a href="#" target="_blank">-->
+                <!--<img src="http://eiv.baidu.com/hmt/icon/21.gif" height="20" border="0" width="20"></a>-->
             <br>
-            地址：<span id="address">重庆市沙坪坝区</span>邮箱：<span id="emails">12346@qq.com</span>
+            地址：<span id="address"><?php echo ($about['address']); ?></span>&nbsp;&nbsp;邮箱：<span id="emails"><?php echo ($about['email']); ?></span>
             <br>
-            联系电话：40000000 联系人：<span id="Fname">你好先生</span><span id="IPhones">13883838383</span>
+            联系人：<span id="Fname"><?php echo ($about['people']); ?></span>&nbsp;&nbsp;400联系电话：<?php echo ($about['tel']); ?>&nbsp;&nbsp;手机：<span id="IPhones"><?php echo ($about['phone']); ?></span>
             <br>
 
         </div>
         <div class="ico01">
             <a title="" href="javascript:void(0);">
-                <img src="/MY_CMF/Public/Home/images/index/img01.gif" alt=""></a></div>
+                <img src="/Public/Home/images/index/img01.gif" alt=""></a></div>
         <div class="ico02">
             <a title="" href="javascript:void(0);">
-                <img src="/MY_CMF/Public/Home/images/index/img02.gif" alt=""></a></div><div class="footerlink">
-        <a href="" title="">挖机修理</a>|<a href="#" title="">修理挖机</a>|<a href="" title="">买挖机</a><br>
-        <a href="#" title="">轻轻轻轻</a> <a href="#" title=""></a>|<a href="#" title="">走走走走走走</a>|<a href="" title="">车车车和车</a>
+                <img src="/Public/Home/images/index/img02.gif" alt=""></a></div><div class="footerlink">
+            <?php if(is_array($link)): $i = 0; $__LIST__ = $link;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$lkf): $mod = ($i % 2 );++$i;?>|<a href="<?php echo ($lkf['link']); ?>" title="<?php echo ($lkf['title']); ?>"><?php echo ($lkf['title']); ?></a>|<?php endforeach; endif; else: echo "" ;endif; ?>
     </div>
     </div>
 </div>

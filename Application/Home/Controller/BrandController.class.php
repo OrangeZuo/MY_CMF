@@ -34,15 +34,18 @@ class BrandController extends HomeController {
 
         $list = D('category')->where("status = 1 and pid = $get")->select();
         foreach ($list as $item){
-
             $id = $item['id'];
            if(in_array($id,$this->banner)){
+               $banner_t    = D('category')->where("status = 1 and id = $id")->find(); //banner标题
                $banner = D('document')->where("status = 1 and category_id = $id")->find(); //banner
            }elseif (in_array($id,$this->seo)){
+               $seo_t    = D('category')->where("status = 1 and id = $id")->find(); //三要素标题
                $seo    = D('document')->where("status = 1 and category_id = $id")->find(); //三要素
            }elseif (in_array($id,$this->case)){
+               $case_t    = D('category')->where("status = 1 and id = $id")->find(); //案例标题
                $case   = D('document')->where("status = 1 and category_id = $id")->limit('2')->order('update_time desc')->select(); //成功案例
            }elseif (in_array($id,$this->new)){
+               $new_t    = D('category')->where("status = 1 and id = $id")->find(); //资讯标题
                $new    = D('document')->where("status = 1 and category_id = $id")->limit('8')->order('update_time desc')->select(); //最新动态
                $new_first    = $new[0];
                unset($new[0]);
@@ -64,9 +67,13 @@ class BrandController extends HomeController {
 //        $this->assign('brandTitle',$brandTitle);
 //        $this->assign('brand',$brand);
         $this->assign('banner',$banner);
+        $this->assign('banner_t',$banner_t);
         $this->assign('seo',$seo);
+        $this->assign('seo_t',$seo_t);
         $this->assign('new_first',$new_first);
+        $this->assign('new_t',$new_t);
         $this->assign('new',$new);
+        $this->assign('case_t',$case_t);
         $this->assign('case',$case);
         $this->assign('product',$product);
         $this->assign('product_t',$product_t);
@@ -74,6 +81,8 @@ class BrandController extends HomeController {
         $this->assign('qiangxiang_t',$qiangxiang_t);
         $this->assign('guzhang',$guzhang);
         $this->assign('guzhang_t',$guzhang_t);
+
+        $fileName = '';
         $this->display('index');
     }
 

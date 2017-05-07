@@ -106,10 +106,13 @@
 			<?php case "3": ?><label class="textarea input-large">
 				<textarea name="config[<?php echo ($config["name"]); ?>]"><?php echo ($config["value"]); ?></textarea>
 			</label><?php break;?>
+				<?php case "5": ?><label class="textarea input-large">
+						<textarea name="config[<?php echo ($config["name"]); ?>]"><?php echo ($config["value"]); ?></textarea>
+					</label><?php break;?>
 			<?php case "4": ?><select name="config[<?php echo ($config["name"]); ?>]">
 				<?php $_result=parse_config_attr($config['extra']);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($key); ?>" <?php if(($config["value"]) == $key): ?>selected<?php endif; ?>><?php echo ($vo); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
 			</select><?php break; endswitch;?>
-				
+
 			</div>
 		</div><?php endforeach; endif; else: echo "" ;endif; ?>
 		<div class="form-item">
@@ -137,7 +140,7 @@
     (function(){
         var ThinkPHP = window.Think = {
             "ROOT"   : "", //当前网站地址
-            "APP"    : "/index.php?s=", //当前项目地址
+            "APP"    : "", //当前项目地址
             "PUBLIC" : "/Public", //项目公共目录地址
             "DEEP"   : "<?php echo C('URL_PATHINFO_DEPR');?>", //PATHINFO分割符
             "MODEL"  : ["<?php echo C('URL_MODEL');?>", "<?php echo C('URL_CASE_INSENSITIVE');?>", "<?php echo C('URL_HTML_SUFFIX');?>"],

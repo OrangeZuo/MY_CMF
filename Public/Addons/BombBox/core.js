@@ -17,7 +17,7 @@ $(function () {
  * @constructor
  */
 function U(url, params, rewrite) {
-    var website = _ROOT_ + '/index.php';
+    var website = _ROOT_ + '/index.html';
     url = url.split('/');
     if (url[0] == '' || url[0] == '@')
         url[0] = APPNAME;
