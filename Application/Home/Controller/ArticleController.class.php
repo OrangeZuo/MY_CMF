@@ -54,13 +54,14 @@ class ArticleController extends HomeController {
         @$category = I('get.category');
         @$key      = I('get.keywords');
         @$id       = I('get.id');
+//        $key = mb_convert_encoding($key, 'gb2312', 'utf-8');
         $new = D('document')->where("status = 1 and class = 'zixun' ")->order('create_time desc')->limit(8)->select();
         $title = [];
         if($category && !empty($category)){
             $title = D('category')->where("id = $category")->find();
             $sql = "category_id = $category and status = 1";
         }elseif ($key && !empty($key)){
-            $sql = "keywords like $key and status = 1";
+            $sql = "keywords like '%$key%' and status = 1";
         }elseif(!empty($class) && $class=='zixun'){
             $sql = " status = 1 and class = 'zixun' ";
         }elseif(!empty($class) && $class=='anli'){

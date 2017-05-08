@@ -432,7 +432,7 @@
         <div class="xiad">
             <form id="message" action="index/upMessage">
                 <p>
-                    <img src="__IMG__/index/logo.png" height="48" alt=""></p>
+                    <img src="{:get_cover($user_say_pic['cover_id'])['path']}" height="48" alt=""></p>
                 <div class="biao">
                     <ul id="oran_table_1">
                         <li><span>姓名：</span><input id="txt_name" class="k2" type="text">*</li>
@@ -511,26 +511,24 @@
     <div class="list2">
         <div class="bis03">
             <div class="aa1">
-                <a href="javascript:void(0)" title="">
-                    <img src="__IMG__/index/logo.png" alt="" ></a><a href="javascript:void(0)" title=""><img src="__IMG__/index/logo.png" alt=""></a></div>
+                <volist name="link_l_pic" id="link_pic">
+                    <a href="javascript:void(0)" title="">
+                        <img src="{:get_cover($link_pic['cover_id'])['path']}">
+                    </a>
+                </volist>
+            </div>
             <div class="link">
-                <a href="#" title="" target="_blank">
-                    百度</a>
-                <a href="#" title="" target="_blank">
-                    美团</a>
-                <a href="#" title="" target="_blank">
-                    google</a>
-                <a href="#" title="" target="_blank">
-                    firefox</a>
-                <a href="#" title="" target="_blank">
-                    xxxx</a>
+                <volist name="friend_link" id="f_link">
+                    <a href="{$f_link['link']}" title="" target="_blank">
+                        {$f_link['title']}</a>
+                </volist>
                 <div class="apply">
-                    <a href="#" target="_blank" title="">友情链接</a>
+                    <a href="javascript:void(0);">友情链接</a>
                 </div>
             </div>
             <div class="aa2">
-                <a href="#" title="">
-                    <img src="__IMG__/index/logo.png" alt="" ></a><p>
+                <a href="javascript:void(0);" title="">
+                    <img src="{:get_cover($link_r_pic['cover_id'])['path']}"></a><p>
                 维修热线<span>{$about['tel']}</span></p>
             </div>
         </div>

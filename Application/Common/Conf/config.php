@@ -172,7 +172,7 @@ return array(
 //        'detail/:id\d$'        =>   'Article/detail',  //文章页
 //        ':category$'            =>  'Article/lists'  //列表页
     ),
-    'URL_HTML_SUFFIX'=>'',
+    'URL_HTML_SUFFIX'=>'html',
     'URL_CASE_INSENSITIVE' => true, //默认false 表示URL区分大小写 true则表示不区分大小写
     'URL_MODEL'            => 2, //URL模式
     'VAR_URL_PARAMS'       => '', // PATHINFO URL参数变量
