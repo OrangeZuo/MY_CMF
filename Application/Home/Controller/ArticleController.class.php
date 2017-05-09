@@ -23,16 +23,67 @@ class ArticleController extends HomeController {
 
 
     public static $category_id = [
+        82 => 'xiaosongqiangxiangweixiu',
+        83 => 'xiaosongguzhangweixiu',
+        70 => 'xiaosongchanpinzhanshi',
+        24 => 'xiaosongchenggonganli',
         25 => 'xiaosongzixun',
+
+        84 => 'kateqiangxiangweixiu',
+        85 => 'kateguzhangweixiu',
+        71 => 'katechanpinzhanshi',
+        41 => 'katechenggonganli',
         42 => 'katezixun',
+
+        88 => 'zhuyouqiangxiangweixiu',
+        89 => 'zhuyouguzhangweixiu',
+        72 => 'zhuyouchanpinzhanshi',
+        46 => 'zhuyouchenggonganli',
         47 => 'zhuyouzixun',
+
+        86 => 'shengangqiangxiangweixiu',
+        87 => 'shengangguzhangweixiu',
+        73 => 'shengangchanpinzhanshi',
+        52 => 'shengangchenggonganli',
         51 => 'shengangzixun',
+
+        93 => 'riliqiangxiangweixiu',
+        92 => 'riliguzhangweixiu',
+        74 => 'rilichanpinzhanshi',
+        56 => 'rilichenggonganli',
         55 => 'rilizixun',
+
+        95 => 'kaisiqiangxiangweixiu',
+        94 => 'kaisiguzhangweixiu',
+        75 => 'kaisichanpinzhanshi',
+        60 => 'kaisichenggonganli',
         59 => 'kaisizixun',
+
+        97 => 'jiatengqiangxiangweixiu',
+        96 => 'jiatengguzhangweixiu',
+        76 => 'jiatengchanpinzhanshi',
+        63 => 'jiatengchenggonganli',
         64 => 'jiatengzixun',
+
+
+        99 => 'sanyiqiangxiangweixiu',
+        98 => 'sanyiguzhangweixiu',
+        77 => 'sanyichanpinzhanshi',
+        69 => 'sanyichenggonganli',
         67 => 'sanyizixun',
+
+        108 => 'libohaierqiangxiangweixiu',
+        107 => 'libohaierguzhangweixiu',
+        113 => 'libohaierchanpinzhanshi',
+        112 => 'libohaierchenggonganli',
         104 => 'woerwozixun',
+
+        101 => 'woerwoqiangxiangweixiu',
+        102 => 'woerwoguzhangweixiu',
+        106 => 'woerwochanpinzhanshi',
+        105 => 'woerwochenggonganli',
         111 => 'libokaierzixun',
+
         ];
 
 
@@ -68,13 +119,19 @@ class ArticleController extends HomeController {
             $sql = " status = 1 and class = 'anli' ";
         }elseif(!empty($class) && $class=='changjianwenti'){
             $sql = " status = 1 and class = 'changjianwenti' ";
+        }elseif(!empty($class) && $class=='weixiuzixun'){
+            $sql = " is_article = 1";
+        }else{
+            $this->error('没有此内容!');
         }
         $total = D('document') -> where($sql) -> count();
         if(!$total){
             $this->error('没有此内容!');
         }
+
+
         $n = 8;
-        $page = isset($_GET['page'])?intval($_GET['page']):1;
+        $page = isset($_GET['p'])?intval($_GET['p']):1;
         $pageNum = ceil($total/$n);
         if($pageNum == 0){
             $pageNum = 1;
@@ -96,6 +153,8 @@ class ArticleController extends HomeController {
         $this->assign("page",$page);
         $this->assign("pageNum",$pageNum);
         $this->assign('total',$total);
+        $arr = explode('/', $_SERVER['REQUEST_URI']);
+        $this->assign('arr', $arr);
         $this->display('lists');
 	}
 
@@ -128,15 +187,8 @@ class ArticleController extends HomeController {
             $this->assign('info',$info);
             $this->assign('new',$new);
             $this->assign('keywords',$keywords);
-            $this->assign('category_id', self::$category_id);
 
 
-
-
-
-
-//            var_dump($id);
-//            die();
         }
 
 		/* 标识正确性检测 */
@@ -159,9 +211,11 @@ class ArticleController extends HomeController {
 		/* 更新浏览数 */
 		$map = array('id' => $id);
 		$Document->where($map)->setInc('view');
-
+        $arr = explode('/', $_SERVER['REQUEST_URI']);
 		/* 模板赋值并渲染模板 */
 		$this->assign('page', $p); //页码
+        $this->assign('categoryId', self::$category_id);
+        $this->assign('arr', $arr);
 		$this->display('detail');
 	}
 

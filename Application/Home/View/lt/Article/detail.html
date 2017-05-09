@@ -25,13 +25,14 @@
             </dl>
             <div class="page">
                 <?php if(isset($prev['id']) && !empty($prev['id'])):?>
-                <a href="{:U('detail?id='.$prev['id'])}" style="float: left">上一篇：{$prev['title']}</a>
+                <?php $info_id = $info['category_id']?>
+                <a href="{:U('/'.$arr[1].'/'.$prev['id'])}" style="float: left">上一篇：{$prev['title']}</a>
                 <?php else:?>
                 <a style="float: left">上一篇：没有了</a>
                 <?php endif;?>
-
+                <?php $info_id = $info['category_id']?>
                 <?php if(isset($next['id']) && !empty($next['id'])):?>
-                <a href="{:U('detail?id='.$next['id'])}" style="float: right">下一篇：{$next['title']}</a>
+                <a href="{:U('/'.$arr[1].'/'.$next['id'])}" style="float: right">下一篇：{$next['title']}</a>
                 <?php else:?>
                 <a style="float: right">下一篇：没有了</a>
                 <?php endif;?>

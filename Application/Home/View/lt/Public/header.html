@@ -19,7 +19,8 @@
     <div class="nav">
         <ul>
             <volist name="nav" id="data" key="k">
-                <li <?php if(stristr($_SERVER['REQUEST_URI'],$data['url']) || $data['url'] == null  || ($data['url'] == 'Index/index' && $_SERVER['REQUEST_URI'] == '/')): ?> class="cur" <?php endif; ?>><a title="" href="{:U($data['url'])}"><span>{$data.title}</span></a></li>
+                <?php $arr = explode('/', $_SERVER['REQUEST_URI']);  $arr2 = explode('/', $data['url'])?>
+                <li <?php if($arr[1] == $arr2[1]): ?> class="cur" <?php endif; ?>><a title="" href="{:U($data['url'])}"><span>{$data.title}</span></a></li>
             </volist>
 
         </ul>

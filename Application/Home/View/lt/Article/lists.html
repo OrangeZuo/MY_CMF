@@ -31,8 +31,8 @@
             <div class="right_main">
                 <volist name="list" id="lt">
                     <dl>
-
-                        <dd><a href="{:U('/'.$category_id[$cate_id].'/'.$lt['id'])}" target="">{$lt['title']}</a></dd>
+                        <?php $cate_id = $lt['category_id']?>
+                        <dd><a href="{:U('/'.$arr[1].'/'.$lt['id'])}" target="">{$lt['title']}</a></dd>
                         <dt>{$lt['description']}</dt>
                     </dl>
                 </volist>
@@ -42,16 +42,16 @@
                     <if condition="($page eq 1) and ($pageNum gt 1)">
                         <a>首页</a>
                         <a>上一页</a>
-                        <a href="{:U('?page='.$next)}"><p>下一页</p></a>
-                        <a href="{:U('?page='.$last)}"><p>尾页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$next)}"><p>下一页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$last)}"><p>尾页</p></a>
                         <elseif condition="($page egt 1) and ($page neq $pageNum) and ($pageNum gt 0)"/>
-                        <a href="{:U('?page='.$first)}"><p>首页</p></a>
-                        <a href="{:U('?page='.$prev)}"><p>上一页</p></a>
-                        <a href="{:U('?page='.$next)}"><p>下一页</p></a>
-                        <a href="{:U('?page='.$last)}"><p>尾页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$first)}"><p>首页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$prev)}"><p>上一页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$next)}"><p>下一页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$last)}"><p>尾页</p></a>
                         <elseif condition="($page eq $pageNum) and ($page neq 1) and ($pageNum gt 1)"/>
-                        <a href="{:U('?page='.$first)}"><p>首页</p></a>
-                        <a href="{:U('?page='.$prev)}"><p>上一页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$first)}"><p>首页</p></a>
+                        <a href="{:U('/'.$arr[1].'?p='.$prev)}"><p>上一页</p></a>
                         <a>下一页</a>
                         <a>尾页</a>
                         <elseif  condition="$page eq $pageNum"/>
